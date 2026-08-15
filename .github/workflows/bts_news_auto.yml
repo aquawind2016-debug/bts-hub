@@ -22,7 +22,7 @@ jobs:
         python-version: '3.10'
 
     - name: 3. 파이썬 로봇 준비물 설치
-      run: pip install requests google-generativeai
+      run: pip install requests google-genai
 
     - name: 4. 뉴스 수집 및 Gemini AI 6하원칙 요약 실행!
       env:
