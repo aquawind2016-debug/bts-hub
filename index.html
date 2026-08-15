@@ -2,214 +2,509 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BTS HUB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BTS HUB - 글로벌 BTS 실시간 뉴스 & 콘서트 허브</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Translate Script -->
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        bts: { 50: '#f5f3ff', 100: '#ede9fe', 500: '#8b5cf6', 600: '#7c3aed', 700: '#6d28d9', 900: '#4c1d95' }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        body { font-family: 'Apple SD Gothic Neo', 'Pretendard', sans-serif; background-color: #f4f5f7; margin: 0; padding: 0; padding-bottom: 80px; color: #333; }
-        .app-container { max-width: 600px; margin: 0 auto; background: #f4f5f7; min-height: 100vh; position: relative; }
-        
-        /* 헤더 */
-        .header { background: #fff; padding: 15px 20px; display: flex; align-items: center; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; }
-        .header .logo { background: #000; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 900; font-style: italic; font-size: 18px; letter-spacing: -0.5px; }
-        .header .logo span { color: #8a2be2; }
-        
-        /* 공통 콘텐츠 */
-        .content { padding: 20px; }
-        .page-title { font-size: 20px; font-weight: 800; margin: 0 0 5px 0; color: #111; }
-        .page-subtitle { font-size: 13px; color: #777; margin: 0 0 20px 0; }
-        
-        /* 상단 필터 버튼 (아시아, 북미 등) */
-        .filters { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
-        .filters::-webkit-scrollbar { display: none; }
-        .filter-btn { padding: 8px 16px; border: none; background: #eef0f3; color: #555; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
-        .filter-btn.active { background: #8a2be2; color: #fff; }
-        
-        /* 카드 디자인 복구 */
-        .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; border: 1px solid #eef0f3; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        
-        /* 일정 탭 전용 스타일 */
-        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
-        .date-badge { background: #f3e8ff; color: #8a2be2; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 12px; }
-        .status-badge { font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 12px; }
-        .status-soldout { background: #fee2e2; color: #ef4444; }
-        .status-progress { background: #f3e8ff; color: #8a2be2; }
-        .status-ready { background: #fef3c7; color: #d97706; }
-        .status-tba { background: #f1f5f9; color: #64748b; }
-        
-        .city-name { font-size: 18px; font-weight: 800; margin: 0 0 6px 0; color: #111; }
-        .city-name span { font-size: 14px; color: #000; font-weight: 900; margin-left: 4px; }
-        .stadium-name { font-size: 14px; color: #64748b; margin: 0; }
-        .btn-ticket { display: block; background: #8a2be2; color: #fff; text-decoration: none; padding: 12px; border-radius: 10px; margin-top: 16px; font-weight: 700; font-size: 14px; text-align: center; }
-        
-        /* 뉴스 탭 전용 스타일 */
-        .news-meta { font-size: 12px; color: #888; margin-bottom: 8px; }
-        .news-title { font-size: 16px; font-weight: 700; margin: 0 0 12px 0; line-height: 1.4; }
-        .news-title a { color: #111; text-decoration: none; }
-        .news-summary { background: #faf5ff; border-radius: 12px; padding: 16px; font-size: 14px; line-height: 1.6; color: #333; }
-        .news-summary-title { color: #8a2be2; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
-        
-        /* 하단 5개 네비게이션 복구 */
-        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; box-shadow: 0 -4px 20px rgba(0,0,0,0.03); z-index: 100; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #94a3b8; font-size: 11px; font-weight: 600; cursor: pointer; text-decoration: none; }
-        .nav-item.active { color: #8a2be2; }
-        .nav-icon { font-size: 20px; }
-        
-        /* 탭 전환 */
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;600;700;800&display=swap');
+        body { font-family: 'Pretendard', sans-serif; background-color: #f8fafc; }
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0px !important; }
+        .goog-te-gadget-simple { background-color: #f3e8ff !important; border: 1px solid #d8b4fe !important; border-radius: 9999px !important; padding: 4px 8px !important; font-size: 11px !important; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .animate-spin-custom { animation: spin 1s linear infinite; }
     </style>
 </head>
-<body>
-<div class="app-container">
-    <div class="header">
-        <div class="logo">BTS <span>HUB</span></div>
-    </div>
+<body class="text-slate-800 bg-slate-100 min-h-screen pb-20">
 
-    <div class="content">
-        <!-- 뉴스 탭 -->
-        <div id="tab-news" class="tab-content">
-            <h3 class="page-title">🔥 실시간 뉴스 피드</h3>
-            <p class="page-subtitle">AI가 요약해주는 가장 빠른 방탄소년단 소식</p>
-            <div id="news-container"><p style="text-align:center; color:#888; padding: 40px 0;">뉴스를 불러오는 중입니다...</p></div>
+    <!-- 모바일 뷰 프레임 (데스크톱 접속 시 중앙 정렬) -->
+    <div class="max-w-md mx-auto bg-white min-h-screen shadow-2xl relative flex flex-col border-x border-slate-200">
+        
+        <!-- 토스트 알림창 -->
+        <div id="toast" class="fixed top-16 left-1/2 transform -translate-x-1/2 bg-slate-800 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg transition-opacity duration-300 opacity-0 pointer-events-none z-50 flex items-center gap-2">
+            <i class="fa-solid fa-circle-info text-bts-500"></i> <span id="toastMsg">알림 메시지</span>
         </div>
 
-        <!-- 일정 탭 (처음 화면에 표시됨) -->
-        <div id="tab-schedule" class="tab-content active">
-            <h3 class="page-title">📅 2026-2027 BTS 월드투어 일정</h3>
-            <p class="page-subtitle">전 세계 주요 도시의 월드투어 'ARIRANG' 전체 일정 및 티켓 정보</p>
-            
-            <div class="filters" id="schedule-filters">
-                <button class="filter-btn active" onclick="filterSchedule('all')">전체보기</button>
-                <button class="filter-btn" onclick="filterSchedule('asia')">아시아</button>
-                <button class="filter-btn" onclick="filterSchedule('na')">북미</button>
-                <button class="filter-btn" onclick="filterSchedule('eu')">유럽</button>
-                <button class="filter-btn" onclick="filterSchedule('sa')">남미</button>
+        <!-- 상단 광고 배너 영역 -->
+        <div class="bg-slate-900 text-slate-300 text-[10px] text-center py-1 flex items-center justify-center gap-2 border-b border-slate-800">
+            <span class="bg-bts-600 text-white px-1 rounded text-[9px] font-bold">AD</span>
+            <span>[광고] 2026-2027 BTS 월드투어 공식 굿즈샵 오픈</span>
+        </div>
+
+        <!-- 헤더 영역 -->
+        <header class="bg-white border-b border-slate-100 shadow-sm relative z-20">
+            <div class="px-4 py-3 flex items-center justify-between">
+                <!-- 로고 -->
+                <div class="flex items-center gap-2 cursor-pointer" onclick="switchTab('news')">
+                    <div class="bg-black text-white px-2.5 py-1 font-black text-lg tracking-tight rounded transform -rotate-1 shadow-md">
+                        BTS <span class="bg-bts-600 px-1 text-white rounded-sm text-xs">HUB</span>
+                    </div>
+                </div>
+
+                <!-- 우측 액션 버튼들 -->
+                <div class="flex items-center gap-2.5">
+                    <div id="google_translate_element"></div>
+                    <button onclick="fetchLiveBTSNews(true)" title="뉴스 새로고침" class="p-1.5 text-slate-600 hover:text-bts-600 transition">
+                        <i id="refreshIcon" class="fa-solid fa-rotate-right text-base"></i>
+                    </button>
+                    <button onclick="toggleModal('searchModal')" class="p-1.5 text-slate-700 hover:text-bts-600 transition">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- 메인 카테고리 필터 바 -->
+            <div class="flex items-center gap-3 px-4 py-2.5 overflow-x-auto text-sm font-bold border-b border-slate-100 scrollbar-none">
+                <button onclick="filterNews('all')" class="filter-btn active text-bts-600 border-b-2 border-bts-600 pb-0.5 whitespace-nowrap">전체</button>
+                <button onclick="filterNews('breaking')" class="filter-btn text-slate-500 hover:text-bts-600 pb-0.5 whitespace-nowrap">속보</button>
+                <button onclick="filterNews('pick')" class="filter-btn flex items-center gap-1 text-slate-500 hover:text-bts-600 pb-0.5 whitespace-nowrap">
+                    <span class="bg-bts-600 text-white text-[9px] px-1 rounded font-black tracking-wider">BTS</span> PICK
+                </button>
+                <button onclick="filterNews('tour')" class="filter-btn text-slate-500 hover:text-bts-600 pb-0.5 whitespace-nowrap">월드투어</button>
+            </div>
+        </header>
+
+        <!-- 메인 콘텐츠 영역 -->
+        <main class="flex-1 pb-10">
+
+            <!-- 탭 1: 뉴스 피드 페이지 -->
+            <div id="tab-news" class="tab-content">
+                <!-- 🔥 오늘 주요 뉴스 히어로 섹션 -->
+                <section class="p-4 border-b border-slate-100 bg-white">
+                    <div class="flex items-center justify-between mb-3">
+                        <h2 class="text-base font-extrabold text-slate-900 flex items-center gap-1.5">
+                            🔥 오늘 주요 뉴스
+                        </h2>
+                        <span class="text-[10px] bg-purple-100 text-purple-700 px-2 py-0.5 rounded-full font-bold">6하원칙 AI 요약</span>
+                    </div>
+                    <div id="hotNewsHero" class="cursor-pointer group relative bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-purple-900/20">
+                        <div class="p-8 text-center text-purple-300">
+                            <i class="fa-solid fa-spinner animate-spin-custom text-2xl mb-2"></i>
+                            <p class="text-xs">실시간 AI 뉴스 데이터를 불러오는 중...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 뉴스 리스트 섹션 -->
+                <section class="p-4">
+                    <div class="flex items-center justify-between mb-3">
+                        <div class="flex items-center gap-2">
+                            <h2 class="text-sm font-bold text-slate-700">실시간 뉴스 피드</h2>
+                            <span id="newsCountBadge" class="bg-slate-200 text-slate-700 text-[10px] font-bold px-1.5 py-0.2 rounded-full">0</span>
+                        </div>
+                    </div>
+                    <div id="newsFeedList" class="space-y-3">
+                        <!-- 동적 렌더링 영역 -->
+                    </div>
+                </section>
+            </div>
+
+            <!-- 탭 2: 월드투어 콘서트 일정 -->
+            <div id="tab-schedule" class="tab-content hidden p-4">
+                <h2 class="text-lg font-black text-slate-900 mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-calendar-check text-bts-600"></i> 2026-2027 BTS 월드투어 일정
+                </h2>
+                <p class="text-xs text-slate-500 mb-4">전 세계 주요 도시의 월드투어 'ARIRANG' 전체 일정 및 티켓 정보</p>
+
+                <!-- 일정 필터 탭 -->
+                <div class="flex gap-2 mb-4 overflow-x-auto pb-1 text-xs font-semibold scrollbar-none">
+                    <button onclick="filterSchedule('all', this)" class="sched-btn bg-bts-600 text-white px-3 py-1.5 rounded-lg shrink-0 transition">전체보기</button>
+                    <button onclick="filterSchedule('asia', this)" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg shrink-0 transition">아시아</button>
+                    <button onclick="filterSchedule('na', this)" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg shrink-0 transition">북미</button>
+                    <button onclick="filterSchedule('eu', this)" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg shrink-0 transition">유럽</button>
+                    <button onclick="filterSchedule('sa', this)" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg shrink-0 transition">남미</button>
+                </div>
+
+                <!-- 일정 리스트 -->
+                <div id="scheduleList" class="space-y-3">
+                    <!-- JS로 채워집니다 -->
+                </div>
+            </div>
+
+            <!-- 탭 3: 커뮤니티 응원 게시판 -->
+            <div id="tab-community" class="tab-content hidden p-4">
+                <div class="bg-gradient-to-r from-bts-600 to-purple-800 text-white p-4 rounded-2xl mb-4 shadow">
+                    <h2 class="font-black text-lg flex items-center gap-2">
+                        <i class="fa-solid fa-heart text-pink-300"></i> ARMY 응원 한마디
+                    </h2>
+                    <p class="text-xs text-purple-100 mt-1">누구나 자유롭게 BTS와 전 세계 아미들에게 응원의 메시지를 남겨보세요!</p>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-3 mb-4 shadow-sm">
+                    <div class="flex gap-2 mb-2">
+                        <input type="text" id="fanName" placeholder="닉네임" class="w-1/3 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-bts-600">
+                        <input type="text" id="fanCountry" placeholder="국가 (예: 한국 🇰🇷)" class="w-2/3 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-bts-600">
+                    </div>
+                    <textarea id="fanMsg" rows="2" placeholder="응원의 한마디를 적어주세요!" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs focus:outline-none focus:border-bts-600 resize-none"></textarea>
+                    <div class="flex justify-end mt-2">
+                        <button onclick="postFanMessage()" class="bg-bts-600 hover:bg-bts-700 text-white font-bold text-xs px-4 py-2 rounded-lg transition shadow">작성하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 탭 4: 갤러리 & 미디어 -->
+            <div id="tab-gallery" class="tab-content hidden p-4">
+                <h2 class="text-lg font-black text-slate-900 mb-1 flex items-center gap-2">
+                    <i class="fa-solid fa-photo-film text-bts-600"></i> 포토 갤러리
+                </h2>
+                <p class="text-xs text-slate-500 mb-4">보라빛 오션, 잊지 못할 스타디움 라이브 현장</p>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 shadow">
+                        <img src="https://images.unsplash.com/photo-1540039155732-6761b54f222a?auto=format&fit=crop&w=400&q=80" alt="퍼플 오션" class="w-full h-36 object-cover opacity-85 group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold bg-black/60 backdrop-blur-sm p-1.5 rounded text-center">퍼플 오션</div>
+                    </div>
+                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 shadow">
+                        <img src="https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=400&q=80" alt="스타디움" class="w-full h-36 object-cover opacity-85 group-hover:scale-105 transition duration-500">
+                        <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold bg-black/60 backdrop-blur-sm p-1.5 rounded text-center">스타디움 투어</div>
+                    </div>
+                </div>
             </div>
             
-            <div id="schedule-container"><p style="text-align:center; color:#888; padding: 40px 0;">일정을 불러오는 중입니다...</p></div>
+            <!-- 탭 5: 수익화 안내 -->
+            <div id="tab-monetization" class="tab-content hidden p-4">
+                <div class="bg-slate-900 text-white p-4 rounded-2xl mb-4">
+                    <h2 class="font-black text-lg flex items-center gap-2 text-purple-300">
+                        <i class="fa-solid fa-coins text-yellow-400"></i> 웹사이트 수익화 안내
+                    </h2>
+                    <p class="text-xs text-slate-300 mt-1">추후 구글 애드센스 승인을 받아 광고를 배치할 수 있는 영역입니다.</p>
+                </div>
+            </div>
+        </main>
+
+        <!-- 하단 네비게이션 바 -->
+        <nav class="fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white border-t border-slate-200 z-40 flex items-center justify-around py-2 shadow-[0_-5px_15px_-5px_rgba(0,0,0,0.1)]">
+            <button onclick="switchTab('news')" id="nav-news" class="nav-item active flex flex-col items-center gap-0.5 text-bts-600 transition">
+                <i class="fa-solid fa-newspaper text-lg"></i>
+                <span class="text-[10px] font-bold">뉴스</span>
+            </button>
+            <button onclick="switchTab('schedule')" id="nav-schedule" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600 transition">
+                <i class="fa-solid fa-calendar-check text-lg"></i>
+                <span class="text-[10px] font-bold">일정</span>
+            </button>
+            <button onclick="switchTab('community')" id="nav-community" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600 transition">
+                <i class="fa-solid fa-comments text-lg"></i>
+                <span class="text-[10px] font-bold">커뮤니티</span>
+            </button>
+            <button onclick="switchTab('gallery')" id="nav-gallery" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600 transition">
+                <i class="fa-solid fa-images text-lg"></i>
+                <span class="text-[10px] font-bold">갤러리</span>
+            </button>
+            <button onclick="switchTab('monetization')" id="nav-monetization" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600 transition">
+                <i class="fa-solid fa-circle-dollar-to-slot text-lg"></i>
+                <span class="text-[10px] font-bold">수익화</span>
+            </button>
+        </nav>
+
+        <!-- 기사 상세보기 및 6하원칙 상세 요약 모달 (팝업창 복구완료!) -->
+        <div id="articleModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-end sm:items-center justify-center backdrop-blur-sm transition-opacity">
+            <div class="bg-white w-full max-w-md h-[90vh] sm:h-[85vh] rounded-t-3xl sm:rounded-2xl flex flex-col overflow-hidden shadow-2xl">
+                <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                    <span id="articleBadge" class="bg-bts-100 text-bts-700 text-xs font-bold px-2.5 py-0.5 rounded-full">BTS PICK</span>
+                    <button onclick="toggleModal('articleModal')" class="p-1 text-slate-400 hover:text-slate-700 transition">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+                <div class="p-5 overflow-y-auto flex-1 space-y-4">
+                    <h2 id="articleTitle" class="text-lg font-black text-slate-900 leading-snug">제목 불러오는 중...</h2>
+                    <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-100 pb-3">
+                        <span id="articleSource" class="font-semibold text-slate-600">출처</span>
+                        <span id="articleTime"><i class="fa-regular fa-clock"></i> 시간</span>
+                    </div>
+                    
+                    <!-- ⚡ 6하원칙 기반 상세 분석 요약 박스 -->
+                    <div class="bg-gradient-to-br from-purple-950 via-purple-900 to-bts-900 text-white p-4 rounded-2xl border border-purple-400/30 shadow-lg">
+                        <div class="flex items-center justify-between mb-3 border-b border-purple-700/50 pb-2">
+                            <span class="font-black text-xs text-yellow-300 flex items-center gap-1.5">
+                                <i class="fa-solid fa-bolt text-yellow-400"></i> BTS PICK 기사 원문 상세 요약
+                            </span>
+                            <span class="text-[9px] bg-purple-800/90 text-purple-200 px-2 py-0.5 rounded-full font-bold">Gemini AI</span>
+                        </div>
+                        <div id="articleSummary" class="text-xs text-purple-100 leading-relaxed font-medium space-y-2">
+                            요약 내용이 여기에 표시됩니다.
+                        </div>
+                    </div>
+
+                    <img id="articleImage" src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80" alt="기사 이미지" class="w-full h-48 object-cover rounded-xl shadow-sm">
+                    
+                    <!-- 🔗 공식 언론사 원문 기사 전체 읽기 -->
+                    <div class="pt-2">
+                        <a id="articleOriginalLink" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-900 hover:bg-black text-white font-bold text-xs py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow active:scale-[0.99] cursor-pointer text-center block">
+                            <span>공식 언론사 원문 기사 전체 읽기</span>
+                            <i class="fa-solid fa-arrow-up-right-from-square text-xs text-purple-300"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
 
-    <!-- 예전 5개 메뉴 하단 네비게이션 복구 -->
-    <div class="bottom-nav">
-        <div class="nav-item" onclick="switchMainTab('news')">
-            <span class="nav-icon">📰</span>
-            <span>뉴스</span>
-        </div>
-        <div class="nav-item active" onclick="switchMainTab('schedule')">
-            <span class="nav-icon">📅</span>
-            <span>일정</span>
-        </div>
-        <div class="nav-item">
-            <span class="nav-icon">💬</span>
-            <span>커뮤니티</span>
-        </div>
-        <div class="nav-item">
-            <span class="nav-icon">🖼️</span>
-            <span>갤러리</span>
-        </div>
-        <div class="nav-item">
-            <span class="nav-icon">💰</span>
-            <span>수익화</span>
-        </div>
-    </div>
-</div>
+    <script>
+        // 전역 상태
+        let liveNewsArticles = [];
+        let currentCategory = 'all';
 
-<script>
-    // 탭 전환 로직
-    function switchMainTab(tabId) {
-        document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
-        document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
-        
-        document.getElementById('tab-' + tabId).classList.add('active');
-        event.currentTarget.classList.add('active');
-    }
+        // 공통 알림 함수
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').innerText = message;
+            toast.classList.remove('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'pointer-events-none');
+            }, 2500);
+        }
 
-    // 뉴스 데이터 불러오기
-    async function loadNews() {
-        try {
-            const response = await fetch('news_data.json');
-            const data = await response.json();
-            const container = document.getElementById('news-container');
+        // 일정 데이터 동적 로드
+        let concertSchedules = [];
+        async function fetchSchedules() {
+            try {
+                const response = await fetch('schedule_data.json?t=' + new Date().getTime());
+                if (!response.ok) throw new Error('일정 파일 없음');
+                concertSchedules = await response.json();
+            } catch (err) {
+                console.log("일정 데이터를 아직 불러오지 못했습니다.");
+            }
+            filterSchedule('all', document.querySelector('.sched-btn'));
+        }
+
+        const fallbackImages = [
+            'https://images.unsplash.com/photo-1540039155732-6761b54f222a?auto=format&fit=crop&w=800&q=80',
+            'https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=800&q=80'
+        ];
+
+        // 뉴스 데이터 동적 로드
+        async function fetchLiveBTSNews(isManualRefresh = false) {
+            const refreshIcon = document.getElementById('refreshIcon');
+            if (refreshIcon) refreshIcon.classList.add('animate-spin-custom');
+
+            try {
+                const response = await fetch('news_data.json?t=' + new Date().getTime());
+                if (!response.ok) throw new Error('파일 없음');
+                const rawData = await response.json();
+                
+                liveNewsArticles = rawData.map((item, idx) => {
+                    let summaryLines = item.summary ? item.summary.split('\n').filter(l => l.trim().length > 0) : ['AI 요약 준비 중...'];
+                    summaryLines = summaryLines.map(l => l.replace(/[*#]/g, '').trim());
+
+                    return {
+                        id: idx + 1000,
+                        title: item.title,
+                        source: item.source || '언론사',
+                        time: item.time || '방금 전',
+                        badge: idx === 0 ? '속보' : 'BTS PICK',
+                        badgeBg: idx === 0 ? 'bg-red-500' : 'bg-bts-600',
+                        category: idx === 0 ? 'breaking' : 'pick',
+                        link: item.link,
+                        image: fallbackImages[idx % 2],
+                        summaryLines: summaryLines
+                    };
+                });
+            } catch (err) {
+                liveNewsArticles = [];
+            }
+
+            if (refreshIcon) refreshIcon.classList.remove('animate-spin-custom');
+            
+            renderHotNewsHero();
+            renderNewsFeed();
+
+            if (isManualRefresh) showToast('최신 뉴스를 불러왔습니다.');
+        }
+
+        function renderHotNewsHero() {
+            const container = document.getElementById('hotNewsHero');
+            if (!container || liveNewsArticles.length === 0) return;
+            const hero = liveNewsArticles[0];
+            const p1 = hero.summaryLines[0] || '';
+            const p2 = hero.summaryLines[1] || '';
+
+            // 여기서 클릭 시 팝업창을 띄우는 함수(openNewsDetail)가 호출됩니다.
+            container.onclick = () => openNewsDetail(hero.id);
+            container.innerHTML = `
+                <img src="${hero.image}" class="w-full h-48 object-cover opacity-60 group-hover:scale-105 transition duration-500">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-4 flex flex-col justify-between">
+                    <div class="flex items-center justify-between">
+                        <span class="${hero.badgeBg} text-white font-bold text-[10px] px-2.5 py-0.5 rounded-full shadow">${hero.badge}</span>
+                        <span class="text-slate-300 text-[11px]"><i class="fa-regular fa-clock"></i> ${hero.time}</span>
+                    </div>
+                    <div>
+                        <h3 class="text-white font-bold text-base line-clamp-2 leading-snug mb-2">${hero.title}</h3>
+                        <div class="bg-purple-950/85 border border-purple-400/40 backdrop-blur-md p-2.5 rounded-xl shadow-md">
+                            <span class="font-bold text-yellow-300 text-[11px] flex items-center gap-1 mb-1"><i class="fa-solid fa-bolt"></i> 핵심 요약</span>
+                            <div class="space-y-0.5 font-normal text-purple-100 text-[11px]">
+                                <p class="truncate">${p1}</p>
+                                <p class="truncate">${p2}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderNewsFeed() {
+            const container = document.getElementById('newsFeedList');
+            const countBadge = document.getElementById('newsCountBadge');
+            let filtered = currentCategory === 'all' ? liveNewsArticles : liveNewsArticles.filter(i => i.category === currentCategory);
+            
+            if(countBadge) countBadge.innerText = filtered.length;
             container.innerHTML = '';
             
-            data.forEach(news => {
+            filtered.forEach(item => {
+                const p1 = item.summaryLines[0] || '';
+                const p2 = item.summaryLines[1] || '';
                 const card = document.createElement('div');
-                card.className = 'card';
+                card.className = "bg-white border border-slate-200 rounded-2xl p-4 shadow-sm hover:shadow-md cursor-pointer";
+                
+                // 클릭 시 팝업창 띄우기
+                card.onclick = () => openNewsDetail(item.id);
                 card.innerHTML = `
-                    <div class="news-meta">${news.source} · ${news.time}</div>
-                    <h4 class="news-title"><a href="${news.link}" target="_blank">${news.title}</a></h4>
-                    <div class="news-summary">
-                        <div class="news-summary-title">⚡ BTS PICK 핵심 요약</div>
-                        ${news.summary.replace(/\\n/g, '<br>')}
+                    <div class="flex justify-between mb-2">
+                        <div class="flex items-center gap-1.5">
+                            <span class="${item.badgeBg} text-white font-bold text-[10px] px-2 py-0.5 rounded">${item.badge}</span>
+                            <span class="text-slate-500 font-medium text-[11px]">${item.source}</span>
+                        </div>
+                        <span class="text-slate-400 text-[11px]">${item.time}</span>
+                    </div>
+                    <h3 class="font-bold text-slate-900 text-sm mb-2">${item.title}</h3>
+                    <div class="my-2 p-2 bg-purple-50 rounded-lg text-[11px] text-slate-700">
+                        <p class="truncate font-medium">${p1}</p>
+                        <p class="truncate">${p2}</p>
                     </div>
                 `;
                 container.appendChild(card);
             });
-        } catch (e) {
-            document.getElementById('news-container').innerHTML = '<p style="text-align:center; color:#888; padding: 40px 0;">로봇이 아직 뉴스를 수집하고 있습니다.</p>';
         }
-    }
 
-    // 일정 데이터 불러오기
-    let scheduleData = [];
-    async function loadSchedule() {
-        try {
-            const response = await fetch('schedule_data.json');
-            scheduleData = await response.json();
-            renderSchedule('all');
-        } catch (e) {
-            document.getElementById('schedule-container').innerHTML = '<p style="text-align:center; color:#888; padding: 40px 0;">일정 데이터를 불러오지 못했습니다.</p>';
-        }
-    }
+        // 일정 렌더링 + 스텁허브 예매 버튼 복구 완료!
+        function renderSchedule(region = 'all') {
+            const container = document.getElementById('scheduleList');
+            if (!container) return; 
+            container.innerHTML = '';
 
-    function filterSchedule(region) {
-        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
-        renderSchedule(region);
-    }
-
-    function renderSchedule(region) {
-        const container = document.getElementById('schedule-container');
-        container.innerHTML = '';
-        const filtered = region === 'all' ? scheduleData : scheduleData.filter(s => s.region === region);
-        
-        filtered.forEach(s => {
-            let statusClass = 'status-tba';
-            if (s.status.includes('매진')) statusClass = 'status-soldout';
-            else if (s.status.includes('예매 진행중')) statusClass = 'status-progress';
-            else if (s.status.includes('예매 오픈')) statusClass = 'status-ready';
-
-            let ticketBtn = '';
-            if (s.ticketUrl && s.ticketUrl !== '') {
-                ticketBtn = `<a href="${s.ticketUrl}" target="_blank" class="btn-ticket">🎫 스텁허브(StubHub) 예매하기</a>`;
+            let list = concertSchedules;
+            if (region !== 'all') {
+                list = concertSchedules.filter(s => s.region === region);
             }
 
-            // KR, US 등 나라 코드를 작고 진하게 렌더링
-            let cityParts = s.city.split(' ');
-            let displayCity = s.city;
-            if(cityParts.length > 1) {
-                let countryCode = cityParts.pop(); 
-                displayCity = cityParts.join(' ') + ` <span>${countryCode}</span>`;
+            if(list.length === 0) {
+                 container.innerHTML = `<p class="text-center text-slate-400 text-xs py-4">해당 지역 일정이 없습니다.</p>`;
+                 return;
             }
 
-            const card = document.createElement('div');
-            card.className = 'card';
-            card.innerHTML = `
-                <div class="card-top">
-                    <div class="date-badge">${s.date}</div>
-                    <div class="status-badge ${statusClass}">${s.status}</div>
-                </div>
-                <h4 class="city-name">${displayCity}</h4>
-                <p class="stadium-name">${s.stadium}</p>
-                ${ticketBtn}
-            `;
-            container.appendChild(card);
-        });
-    }
+            list.forEach(item => {
+                let statusClass = 'bg-bts-100 text-bts-700';
+                if(item.status === '매진 완료') statusClass = 'bg-red-100 text-red-600';
+                else if(item.status === '추후 공지') statusClass = 'bg-slate-100 text-slate-500';
 
-    loadNews();
-    loadSchedule();
-</script>
+                // 스텁허브 티켓 구매 버튼
+                let ticketButton = '';
+                if (item.ticketUrl && item.ticketUrl !== '') {
+                    ticketButton = `<a href="${item.ticketUrl}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 bg-bts-600 hover:bg-bts-700 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg transition shadow-sm active:scale-95"><i class="fa-solid fa-ticket-simple"></i> 티켓 구매</a>`;
+                }
+
+                const card = document.createElement('div');
+                card.className = "bg-white p-3.5 rounded-xl border border-slate-200 flex items-start justify-between shadow-sm hover:border-bts-300 transition";
+                card.innerHTML = `
+                    <div>
+                        <span class="text-[10px] font-bold text-bts-600 bg-purple-100 px-2 py-0.5 rounded-full">${item.date}</span>
+                        <h4 class="font-bold text-slate-800 text-sm mt-1.5">${item.city}</h4>
+                        <p class="text-[11px] text-slate-500 mt-0.5">${item.stadium}</p>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg ${statusClass}">
+                            ${item.status}
+                        </span>
+                        ${ticketButton}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function filterSchedule(region, btnElement) {
+            document.querySelectorAll('.sched-btn').forEach(btn => {
+                btn.classList.remove('bg-bts-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'text-slate-700');
+            });
+            if(btnElement) {
+                btnElement.classList.add('bg-bts-600', 'text-white');
+                btnElement.classList.remove('bg-slate-100', 'text-slate-700');
+            }
+            renderSchedule(region);
+        }
+
+        // 뉴스 클릭 시 팝업 모달 띄우기 (복구완료!)
+        function openNewsDetail(id) {
+            const article = liveNewsArticles.find(n => n.id === id);
+            if (!article) return;
+
+            document.getElementById('articleBadge').innerText = article.badge;
+            document.getElementById('articleTitle').innerText = article.title;
+            document.getElementById('articleSource').innerText = article.source;
+            document.getElementById('articleTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${article.time}`;
+            
+            const summaryContainer = document.getElementById('articleSummary');
+            summaryContainer.innerHTML = article.summaryLines.map(line => `<p class="mb-1.5">${line}</p>`).join('');
+
+            const linkElem = document.getElementById('articleOriginalLink');
+            if (linkElem) linkElem.href = article.link || '#';
+            
+            document.getElementById('articleImage').src = article.image;
+
+            toggleModal('articleModal');
+        }
+
+        function toggleModal(modalId) {
+            const target = document.getElementById(modalId);
+            if (target) target.classList.toggle('hidden');
+        }
+
+        // 탭 메뉴 이동 로직 (복구완료!)
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
+            const targetTab = document.getElementById(`tab-${tabName}`);
+            if (targetTab) targetTab.classList.remove('hidden');
+
+            document.querySelectorAll('.nav-item').forEach(nav => {
+                nav.classList.remove('text-bts-600');
+                nav.classList.add('text-slate-400');
+            });
+            const activeNav = document.getElementById(`nav-${tabName}`);
+            if (activeNav) {
+                activeNav.classList.add('text-bts-600');
+                activeNav.classList.remove('text-slate-400');
+            }
+
+            if(tabName === 'schedule') {
+                filterSchedule('all', document.querySelector('.sched-btn'));
+            }
+        }
+
+        window.onload = function() {
+            fetchLiveBTSNews();
+            fetchSchedules();
+            switchTab('news');
+        };
+    </script>
 </body>
 </html>
