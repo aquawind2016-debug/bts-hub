@@ -312,20 +312,20 @@
             }, 2500);
         }
 
-        // 🌟 업데이트된 2026-2027 BTS 월드투어 'ARIRANG' 상세 일정 데이터
+        // 🌟 업데이트된 2026-2027 BTS 월드투어 'ARIRANG' 상세 일정 데이터 (StubHub 실제 예매 링크 추가)
         const concertSchedules = [
-            { date: '2026.04.09 - 04.12', city: '고양, 대한민국 🇰🇷', stadium: '고양종합운동장 주경기장', status: '매진 완료', region: 'asia' },
-            { date: '2026.04.17 - 04.18', city: '도쿄, 일본 🇯🇵', stadium: '도쿄 돔 (Tokyo Dome)', status: '매진 완료', region: 'asia' },
-            { date: '2026.04.25 - 04.26', city: '탬파, 미국 🇺🇸', stadium: 'Raymond James Stadium', status: '예매 진행중', region: 'na' },
-            { date: '2026.05.02 - 05.03', city: '잉글우드, 미국 🇺🇸', stadium: 'SoFi Stadium', status: '예매 진행중', region: 'na' },
-            { date: '2026.05.07 - 05.10', city: '멕시코시티, 멕시코 🇲🇽', stadium: 'Estadio GNP Seguros', status: '예매 오픈 예정', region: 'na' },
-            { date: '2026.05.15 - 05.16', city: '상파울루, 브라질 🇧🇷', stadium: 'Allianz Parque', status: '예매 오픈 예정', region: 'sa' },
-            { date: '2026.05.23 - 05.24', city: '뉴저지, 미국 🇺🇸', stadium: 'MetLife Stadium', status: '예매 오픈 예정', region: 'na' },
-            { date: '2026.06.05 - 06.06', city: '런던, 영국 🇬🇧', stadium: 'Wembley Stadium', status: '추후 공지', region: 'eu' },
-            { date: '2026.06.12 - 06.13', city: '파리, 프랑스 🇫🇷', stadium: 'Stade de France', status: '추후 공지', region: 'eu' },
-            { date: '2026.06.20 - 06.21', city: '뮌헨, 독일 🇩🇪', stadium: 'Olympiastadion', status: '추후 공지', region: 'eu' },
-            { date: '2026.07.10 - 07.11', city: '방콕, 태국 🇹🇭', stadium: 'Rajamangala Stadium', status: '추후 공지', region: 'asia' },
-            { date: '2026.08.15 - 08.16', city: '서울, 대한민국 🇰🇷', stadium: '잠실올림픽주경기장 (투어 피날레)', status: '추후 공지', region: 'asia' }
+            { date: '2026.04.09 - 04.12', city: '고양, 대한민국 🇰🇷', stadium: '고양종합운동장 주경기장', status: '매진 완료', region: 'asia', ticketUrl: '' },
+            { date: '2026.04.17 - 04.18', city: '도쿄, 일본 🇯🇵', stadium: '도쿄 돔 (Tokyo Dome)', status: '매진 완료', region: 'asia', ticketUrl: '' },
+            { date: '2026.08.10 - 08.11', city: '볼티모어, 미국 🇺🇸', stadium: 'M&T Bank Stadium', status: '예매 진행중', region: 'na', ticketUrl: 'https://www.stubhub.com/kr/bts-tickets/performer/1503185' },
+            { date: '2026.08.15 - 08.16', city: '알링턴, 미국 🇺🇸', stadium: 'AT&T Stadium', status: '예매 진행중', region: 'na', ticketUrl: 'https://www.stubhub.com/bts-arlington-tickets-8-16-2026/event/160262071/' },
+            { date: '2026.08.22 - 08.23', city: '토론토, 캐나다 🇨🇦', stadium: 'Rogers Stadium', status: '예매 진행중', region: 'na', ticketUrl: 'https://www.stubhub.com/kr/bts-tickets/performer/1503185' },
+            { date: '2026.08.27 - 08.28', city: '시카고, 미국 🇺🇸', stadium: 'Soldier Field', status: '예매 진행중', region: 'na', ticketUrl: 'https://www.stubhub.com/bts-chicago-tickets-8-27-2026/event/160262060/' },
+            { date: '2026.09.01 - 09.06', city: '잉글우드, 미국 🇺🇸', stadium: 'SoFi Stadium', status: '예매 진행중', region: 'na', ticketUrl: 'https://www.stubhub.com/bts-inglewood-tickets-9-6-2026/event/160262063/' },
+            { date: '2026.10.15 - 10.16', city: '상파울루, 브라질 🇧🇷', stadium: 'Allianz Parque', status: '예매 오픈 예정', region: 'sa', ticketUrl: '' },
+            { date: '2026.11.05 - 11.06', city: '런던, 영국 🇬🇧', stadium: 'Wembley Stadium', status: '추후 공지', region: 'eu', ticketUrl: '' },
+            { date: '2026.11.12 - 11.13', city: '파리, 프랑스 🇫🇷', stadium: 'Stade de France', status: '추후 공지', region: 'eu', ticketUrl: '' },
+            { date: '2026.11.20 - 11.21', city: '뮌헨, 독일 🇩🇪', stadium: 'Olympiastadion', status: '추후 공지', region: 'eu', ticketUrl: '' },
+            { date: '2026.12.15 - 12.16', city: '서울, 대한민국 🇰🇷', stadium: '잠실올림픽주경기장 (투어 피날레)', status: '추후 공지', region: 'asia', ticketUrl: '' }
         ];
 
         const fallbackImages = [
@@ -462,17 +462,26 @@
 
                 const cityName = item.city || '도시 미정';
 
+                // StubHub 티켓 구매 링크가 있을 경우에만 버튼 생성
+                let ticketButton = '';
+                if (item.ticketUrl) {
+                    ticketButton = `<a href="${item.ticketUrl}" target="_blank" rel="noopener noreferrer" class="mt-2 inline-flex items-center gap-1.5 bg-bts-600 hover:bg-bts-700 text-white text-[10px] font-bold px-3 py-1.5 rounded-lg transition shadow-sm active:scale-95"><i class="fa-solid fa-ticket-simple"></i> 티켓 구매</a>`;
+                }
+
                 const card = document.createElement('div');
-                card.className = "bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm hover:border-bts-300 transition";
+                card.className = "bg-white p-3.5 rounded-xl border border-slate-200 flex items-start justify-between shadow-sm hover:border-bts-300 transition";
                 card.innerHTML = `
                     <div>
                         <span class="text-[10px] font-bold text-bts-600 bg-purple-100 px-2 py-0.5 rounded-full">${item.date}</span>
                         <h4 class="font-bold text-slate-800 text-sm mt-1.5">${cityName}</h4>
                         <p class="text-[11px] text-slate-500 mt-0.5">${item.stadium}</p>
                     </div>
-                    <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg ${statusClass}">
-                        ${item.status}
-                    </span>
+                    <div class="flex flex-col items-end">
+                        <span class="text-[10px] font-bold px-2.5 py-1 rounded-lg ${statusClass}">
+                            ${item.status}
+                        </span>
+                        ${ticketButton}
+                    </div>
                 `;
                 container.appendChild(card);
             });
