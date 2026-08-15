@@ -33,6 +33,6 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add news_data.json
+        git add news_data.json schedule_daa.json
         git commit -m "🚀 BTS 실시간 뉴스 AI 6하원칙 요약 업데이트 완료" || echo "새로운 뉴스가 없습니다."
         git push
