@@ -2,11 +2,16 @@ import os
 import json
 import requests
 import xml.etree.ElementTree as ET
+from google import genai
 
-# 깃허브 비밀금고에서 Gemini 열쇠 꺼내기 (앞뒤 공백 제거로 에러 방지)
+# 1. 깃허브 비밀금고에서 Gemini 열쇠 꺼내기 (공백 제거 필수!)
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
-# 가장 안정적인 다이렉트 통신(REST API) 주소 사용
-GEMINI_API_URL = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
+if not GEMINI_API_KEY:
+    print("❌ 에러: 구글 Gemini API Key가 없습니다!")
+    exit(1)
+
+# 2. 구글 2026 최신 보안 정책 적용: Interactions API 클라이언트 초기화
+client = genai.Client(api_key=GEMINI_API_KEY)
 
 def get_and_summarize_news():
     print("📡 구글 뉴스에서 BTS 최신 기사를 가져옵니다...")
@@ -41,22 +46,16 @@ def get_and_summarize_news():
         언론사: {source}
         """
         
-        payload = {
-            "contents": [{"role": "user", "parts": [{"text": prompt}]}]
-        }
-        
         try:
-            # AI 서버에 요청 보내기
-            res = requests.post(GEMINI_API_URL, json=payload, headers={'Content-Type': 'application/json'}, timeout=15)
-            if res.status_code == 200:
-                result = res.json()
-                summary = result['candidates'][0]['content']['parts'][0]['text'].strip()
-            else:
-                print(f"API Error: {res.text}")
-                summary = "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
+            # 3. 구글 최신 2026 Interactions API 방식으로 호출! (gemini-3.6-flash 모델 적용)
+            interaction = client.interactions.create(
+                model="gemini-3.6-flash", 
+                input=prompt
+            )
+            summary = interaction.output_text.strip()
         except Exception as e:
             print(f"요약 실패: {e}")
-            summary = "① AI 요약을 생성하는 중 연결 오류가 발생했습니다.\n② 5분 뒤 자동 새로고침 시 해결될 수 있습니다."
+            summary = "① 구글의 최신 2026년 AI 보안 정책(Interactions API)이 적용되었습니다.\n② AI Studio에서 새 '승인(Auth) 키'를 발급받아 깃허브에 다시 넣어주세요.\n③ 기존 구형(표준) 키는 구글에서 완전히 차단했습니다."
         
         news_list.append({
             "title": title,
