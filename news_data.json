@@ -4,69 +4,34 @@
         "link": "https://news.google.com/rss/articles/CBMiakFVX3lxTE1zUjc0SHRvYTF3UWE5anBkT016NWRTRVFScDFORUJabGp1RE40WGo1ajZXdDZ5UnJpZUFNWmcyYi1ZelZMXzNYT2hNb3BtM09RR2pKaXVmMTBOamlBcEVzZ2FzRjh1TlVLOUHSAW5BVV95cUxNLXJ4Wm1qTmJmVWZwbUR1WWhDOTl3bXBManVHZHZaS2NEbjFYbDI2MUNiU1pEd3N0Q29ZaGQtS3R5UWhZQjBSWHlyZm9xeWYtOHNqSUFNdUYyWXR2b1dVQVFKQWtlSWc1blZEYkYyUQ?oc=5",
         "time": "Sat, 15 Aug 2026 00:40:00 GMT",
         "source": "weekly.chosun.com",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
+        "summary": "① 요약을 불러오는 중 오류가 발생했습니다.\n② API 키를 확인해주세요."
     },
     {
         "title": "BTS, 미국인 10명 중 4명 이상이 안다…호감도는 46% - 연합뉴스",
         "link": "https://news.google.com/rss/articles/CBMiW0FVX3lxTE1BemxaWThzU3piYUlzNlQ1UW8zMFVjNlk3ZDNQajdJaDNRY2xDMUs4UUFvZWtiXzlaR040WW5aSmx0TDg2S0tBUzJfT1MyTno0RGVGdDhDaC0zSVHSAWBBVV95cUxOa3BXeUJJdWxrX2JCaFZYYVlHcUJxMkNUUUp6LURaZERkZFk0VHFrSEJQNmh4RVd0c05DRkdmY0V2QzliNWxyZUFrVmlLeW1LUlZpNzVFbEtPMlI2aWJ0MjU?oc=5",
         "time": "Fri, 14 Aug 2026 02:37:10 GMT",
         "source": "연합뉴스",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
+        "summary": "① 요약을 불러오는 중 오류가 발생했습니다.\n② API 키를 확인해주세요."
     },
     {
         "title": "BTS 부산서 무슨 일?… 전 세계 아미들 ‘분통’, 하이브는 “사과” - 동아일보",
         "link": "https://news.google.com/rss/articles/CBMieEFVX3lxTE1QVnVTNjFyMUwxQUk3ZDZPaHc2M0g0S1U2TUZfVGo2YXdBTi1XN2phNUhXOGp0eFB2ZHNzT0k3LU5laUk2RHpRQTM2X2dZd0hYdFN6ZU04LXZnOW9KMmV5cmJfMi0zUnFEdC1qd2dTUlR5VU9TdFowRdIBZkFVX3lxTE5KWmdocFBVLVF6M0RaWVpHVWp1QjlZZlhqdjROWTQyNFFKTlZGV25ObUs2alpIMGhvb2FVZlBtT3FmQkVuRmlUd18zTXluNWVkeUF3N2JzR2xHZ3JJU1cybDRLYWFGQQ?oc=5",
         "time": "Sat, 13 Jun 2026 07:00:00 GMT",
         "source": "동아일보",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
+        "summary": "① 요약을 불러오는 중 오류가 발생했습니다.\n② API 키를 확인해주세요."
     },
     {
         "title": "BTS 뷔, 청력 이상 고백…\"오른쪽 30%밖에 안 들려 병원 치료\" - ytn.co.kr",
         "link": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE95MktKaE11b0NxZFNMWVpVVUdmVHhhMlVJRnY5b1dLd0dVUDRzVjNkaGxwTUpSYlJEOC13bWJaMnI1SkFVMTQ0QzJlc1pVZlpzNGZGdmRPeFJwRHVhVHc?oc=5",
         "time": "Wed, 12 Aug 2026 09:08:00 GMT",
         "source": "ytn.co.kr",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
+        "summary": "① 요약을 불러오는 중 오류가 발생했습니다.\n② API 키를 확인해주세요."
     },
     {
         "title": "BTS 뷔·정국, 해외 투어 중 헬스장 데이트…소년미와 성난 근육 [MD★스타] - v.daum.net",
         "link": "https://news.google.com/rss/articles/CBMiRkFVX3lxTE5PZi1pWTRkWU4xV3hNd1g5VmVCTXRhMzJYOThsUlBHNW94RGY4OU9mYmk3d1ltOUpYclE0OWF2dXdrQWR2aEE?oc=5",
         "time": "Fri, 14 Aug 2026 21:01:28 GMT",
         "source": "v.daum.net",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
-    },
-    {
-        "title": "방탄소년단, 월드 와이드 '인기' - 네이트",
-        "link": "https://news.google.com/rss/articles/CBMic0FVX3lxTFBrSG1zQ050Yy1aNkJxbTRtUTJHLVVDZktqblZVTEtZN0lOcllSbnBMS3I0SzNPT29YSkJUY3dOQlo4MG00MlR2VnE1elZwSlljMm91YWhYZUdZSHpuRTY2dFA5QXQtQnR6RFRzQlh1eVM0T1U?oc=5",
-        "time": "Fri, 14 Aug 2026 06:02:00 GMT",
-        "source": "네이트",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
-    },
-    {
-        "title": "BTS ‘아리랑’ 유출자 특정되나…빅히트 뮤직, 미국 법원서 신원 확보 길 열려 - 스타투데이 - 매일경제",
-        "link": "https://news.google.com/rss/articles/CBMiWEFVX3lxTE5QVFhETk1BLVkwd1pGNk5lTVQzQk5DRnNXUXJRZVYzNGJVc21NVlRuRDd6Ung1X1FaRWkwUWpEX1pfWTJHZDhVS0tIcEFRUndtaVNHTG9lY3Y?oc=5",
-        "time": "Fri, 14 Aug 2026 04:39:09 GMT",
-        "source": "매일경제",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
-    },
-    {
-        "title": "BTS ‘아리랑’ 미공개 유출범, 결국 잡히나… 신원 추적 본격화 - v.daum.net",
-        "link": "https://news.google.com/rss/articles/CBMiT0FVX3lxTE1pVWZkUEZQakRPTDB2Y1BncW8xOVVsNjBZRU5xakxDREJQdFB2T2prSUNPbXpnaHBvemRSMlpaclBRdEFXRVc2Qm5PMk9weFk?oc=5",
-        "time": "Fri, 14 Aug 2026 05:56:09 GMT",
-        "source": "v.daum.net",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
-    },
-    {
-        "title": "빅히트, BTS '아리랑' 유출자 끝까지 추적…미국 법원 \"증거개시 인용\" - 네이트",
-        "link": "https://news.google.com/rss/articles/CBMiU0FVX3lxTE93TXFFcDNHTmZFYUpQdmtpaE9RU2lHWFVORXJ1ai1IT1RkSktKemk3ZGhGdHdTZktnXzROeUxnZW1HMnp2T2drc21pWWVicjZlV09v?oc=5",
-        "time": "Fri, 14 Aug 2026 02:30:00 GMT",
-        "source": "네이트",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
-    },
-    {
-        "title": "BTS 미국 인지도 42%…평균치의 두배 수준 - 연합뉴스TV",
-        "link": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5iZWdlYkU3Z1ZTdFlBdGhyUUdPRUQyblFPRkdJRnBqSWNNeTh2a0ZlejlDZkw5S1ctaXlhNU1iakpVS212U19uZWcxZHVhZFRiT3hjMUVFeW9IZXd1SUZ3Q1BKeXZEZnc?oc=5",
-        "time": "Sat, 15 Aug 2026 01:23:00 GMT",
-        "source": "연합뉴스TV",
-        "summary": "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
+        "summary": "① 요약을 불러오는 중 오류가 발생했습니다.\n② API 키를 확인해주세요."
     }
 ]
