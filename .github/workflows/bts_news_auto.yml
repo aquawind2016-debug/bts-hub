@@ -2,7 +2,7 @@ name: BTS News Auto Collector
 
 on:
   schedule:
-    - cron: '0,30 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 
 # ⭐️ 로봇에게 파일 저장(쓰기) 권한을 부여하는 가장 중요한 코드입니다!
