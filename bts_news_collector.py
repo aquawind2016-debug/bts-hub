@@ -70,5 +70,25 @@ def get_and_summarize_news():
         
     print("✅ 뉴스 수집 및 6하원칙 AI 요약이 완료되었습니다!")
 
+# 🌟 새로운 임무: 실시간 티켓 예매 일정(StubHub) 데이터를 갱신하는 함수
+def update_stubhub_schedule():
+    print("🎫 StubHub 및 공식 일정 데이터를 업데이트합니다...")
+    
+    # 향후 이 부분에 BeautifulSoup 등을 이용한 스텁허브 크롤링 코드가 들어갈 수 있습니다.
+    # 지금은 웹사이트가 이 파일을 읽어가는 '동적 연동(Dynamic Fetch)' 아키텍처를 완성합니다.
+    dynamic_schedules = [
+        { "date": "2026.04.09 - 04.12", "city": "고양, 대한민국 🇰🇷", "stadium": "고양종합운동장 주경기장", "status": "매진 완료", "region": "asia", "ticketUrl": "" },
+        { "date": "2026.08.15 - 08.16", "city": "알링턴, 미국 🇺🇸", "stadium": "AT&T Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-arlington-tickets-8-16-2026/event/160262071/" },
+        { "date": "2026.08.27 - 08.28", "city": "시카고, 미국 🇺🇸", "stadium": "Soldier Field", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-chicago-tickets-8-27-2026/event/160262060/" },
+        { "date": "2026.09.01 - 09.06", "city": "잉글우드, 미국 🇺🇸", "stadium": "SoFi Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-inglewood-tickets-9-6-2026/event/160262063/" },
+        { "date": "2026.11.05 - 11.06", "city": "런던, 영국 🇬🇧", "stadium": "Wembley Stadium", "status": "추후 공지", "region": "eu", "ticketUrl": "" }
+    ]
+    
+    with open('schedule_data.json', 'w', encoding='utf-8') as f:
+        json.dump(dynamic_schedules, f, ensure_ascii=False, indent=4)
+        
+    print("✅ 일정 데이터(schedule_data.json) 갱신 완료!")
+
 if __name__ == "__main__":
     get_and_summarize_news()
+    update_stubhub_schedule() # 🌟 스크립트 실행 시 일정 업무도 함께 실행!
