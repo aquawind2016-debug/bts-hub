@@ -44,7 +44,7 @@
             background: #cbd5e1;
             border-radius: 4px;
         }
-        /* 구글 번역 위젯 스타일 커스텀 */
+        /* 구글 번역 위젯 커스텀 */
         .goog-te-banner-frame { display: none !important; }
         body { top: 0px !important; }
         .goog-te-gadget-simple {
@@ -54,7 +54,7 @@
             padding: 4px 8px !important;
             font-size: 11px !important;
         }
-        /* 스피너 애니메이션 */
+        /* 애니메이션 */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
@@ -75,7 +75,7 @@
             <span>[광고] 2026-2027 BTS 월드투어 공식 굿즈샵 오픈</span>
         </div>
 
-        <!-- 헤더 영역 (고정 해제: sticky 제거) -->
+        <!-- 헤더 영역 (스크롤 시 고정되지 않고 함께 위로 이동) -->
         <header class="bg-white border-b border-slate-100 shadow-sm">
             <div class="px-4 py-3 flex items-center justify-between">
                 <!-- 로고 -->
@@ -115,7 +115,7 @@
                 <span class="inline-flex items-center gap-1 font-bold text-bts-600 bg-purple-200 px-1.5 py-0.5 rounded-full text-[10px]">
                     <span class="w-1.5 h-1.5 rounded-full bg-bts-600 animate-ping"></span> 실시간
                 </span>
-                <span id="liveStatusText" class="font-bold text-bts-700 text-[11px]">수신중</span>
+                <span id="liveStatusText" class="font-bold text-bts-700 text-[11px]">수신완료</span>
                 <div class="overflow-hidden whitespace-nowrap w-full">
                     <span id="tickerText" class="inline-block animate-pulse font-medium text-slate-700">
                         #BTS_WORLD_TOUR_ARIRANG #고양종합운동장 #빌보드HOT100 #지민 #뷔 #정국 #진
@@ -134,14 +134,6 @@
                 <button onclick="filterNews('tour')" class="filter-btn text-slate-500 hover:text-bts-600 pb-0.5 whitespace-nowrap">월드투어</button>
                 <button onclick="filterNews('billboard')" class="filter-btn text-slate-500 hover:text-bts-600 pb-0.5 whitespace-nowrap">빌보드/음악</button>
                 <button onclick="filterNews('favorite')" class="filter-btn text-slate-500 hover:text-bts-600 pb-0.5 whitespace-nowrap">관심 뉴스 ❤️</button>
-            </div>
-
-            <!-- 서브 태그 필터 -->
-            <div id="subFilterContainer" class="flex items-center gap-1.5 px-4 py-2 bg-slate-50 text-xs overflow-x-auto">
-                <button onclick="subFilter('all')" class="sub-btn bg-slate-800 text-white px-2.5 py-1 rounded-full font-medium">전체</button>
-                <button onclick="subFilter('concert')" class="sub-btn bg-white text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full font-medium hover:bg-slate-100">콘서트/티켓</button>
-                <button onclick="subFilter('album')" class="sub-btn bg-white text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full font-medium hover:bg-slate-100">앨범/음원</button>
-                <button onclick="subFilter('member')" class="sub-btn bg-white text-slate-600 border border-slate-200 px-2.5 py-1 rounded-full font-medium hover:bg-slate-100">멤버소식</button>
             </div>
         </header>
 
@@ -164,7 +156,7 @@
                     <div id="hotNewsHero" class="cursor-pointer group relative bg-slate-900 rounded-2xl overflow-hidden shadow-lg border border-purple-900/20">
                         <div class="p-8 text-center text-purple-300">
                             <i class="fa-solid fa-spinner animate-spin-custom text-2xl mb-2"></i>
-                            <p class="text-xs">실시간 BTS 헤드라인 불러오는 중...</p>
+                            <p class="text-xs">실시간 AI 뉴스 데이터를 불러오는 중...</p>
                         </div>
                     </div>
                 </section>
@@ -186,7 +178,7 @@
                     <div id="newsFeedList" class="space-y-3">
                         <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 shadow-sm p-4">
                             <div class="w-10 h-10 border-4 border-bts-600 border-t-transparent rounded-full animate-spin-custom mx-auto mb-3"></div>
-                            <p class="text-xs font-bold text-slate-700">구글 뉴스 및 언론사 피드를 수신하고 있습니다...</p>
+                            <p class="text-xs font-bold text-slate-700">파이썬 로봇이 생성한 요약 데이터를 동기화하고 있습니다...</p>
                         </div>
                     </div>
                 </section>
@@ -208,16 +200,7 @@
                 <h2 class="text-lg font-black text-slate-900 mb-1 flex items-center gap-2">
                     <i class="fa-solid fa-calendar-days text-bts-600"></i> 2026-2027 BTS 월드투어 일정
                 </h2>
-                <p class="text-xs text-slate-500 mb-4">전 세계 주요 도시의 월드투어 'ARIRANG' 전체 일정 및 티켓 정보를 확인할 수 있습니다.</p>
-
-                <div class="flex gap-2 mb-4 overflow-x-auto pb-1 text-xs font-semibold">
-                    <button onclick="filterSchedule('all')" class="sched-btn bg-bts-600 text-white px-3 py-1.5 rounded-lg">전체</button>
-                    <button onclick="filterSchedule('asia')" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg">아시아</button>
-                    <button onclick="filterSchedule('na')" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg">북아메리카</button>
-                    <button onclick="filterSchedule('eu')" class="sched-btn bg-slate-100 text-slate-700 px-3 py-1.5 rounded-lg">유럽</button>
-                </div>
-
-                <div id="scheduleList" class="space-y-3"></div>
+                <div id="scheduleList" class="space-y-3 mt-4"></div>
             </div>
 
             <!-- 탭 3: 커뮤니티 응원 게시판 -->
@@ -226,22 +209,7 @@
                     <h2 class="font-black text-lg flex items-center gap-2">
                         <i class="fa-solid fa-heart text-pink-300"></i> ARMY 응원 한마디
                     </h2>
-                    <p class="text-xs text-purple-100 mt-1">회원가입 없이 누구나 자유롭게 BTS와 전 세계 아미들에게 응원의 메시지를 남겨보세요!</p>
                 </div>
-
-                <div class="bg-white border border-slate-200 rounded-xl p-3 mb-4 shadow-sm">
-                    <div class="flex gap-2 mb-2">
-                        <input type="text" id="fanName" placeholder="닉네임 (예: 보라해💜)" class="w-1/3 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-bts-600">
-                        <input type="text" id="fanCountry" placeholder="국가 (예: 한국 🇰🇷)" class="w-2/3 bg-slate-50 border border-slate-200 rounded-lg px-2.5 py-1.5 text-xs focus:outline-none focus:border-bts-600">
-                    </div>
-                    <textarea id="fanMsg" rows="2" placeholder="응원의 한마디를 적어주세요! (최대 100자)" class="w-full bg-slate-50 border border-slate-200 rounded-lg p-2.5 text-xs focus:outline-none focus:border-bts-600 resize-none"></textarea>
-                    <div class="flex justify-end mt-2">
-                        <button onclick="postFanMessage()" class="bg-bts-600 hover:bg-bts-700 text-white font-bold text-xs px-4 py-2 rounded-lg transition flex items-center gap-1 shadow">
-                            <i class="fa-solid fa-paper-plane"></i> 작성하기
-                        </button>
-                    </div>
-                </div>
-
                 <div id="fanWallList" class="space-y-2.5"></div>
             </div>
 
@@ -250,69 +218,24 @@
                 <h2 class="text-lg font-black text-slate-900 mb-1 flex items-center gap-2">
                     <i class="fa-solid fa-photo-film text-bts-600"></i> 미디어 & 포토 갤러리
                 </h2>
-                <p class="text-xs text-slate-500 mb-4">공식 콘서트 포스터, 라이브 현장 사진 및 하이라이트 영상 모음</p>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 shadow">
-                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80" alt="[콘서트 포스터]" class="w-full h-32 object-cover opacity-80 group-hover:scale-105 transition">
-                        <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold bg-black/60 backdrop-blur-sm p-1.5 rounded">
-                            2026 WORLD TOUR 포스터
-                        </div>
-                    </div>
-                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 shadow">
-                        <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80" alt="[공연 현장 연출]" class="w-full h-32 object-cover opacity-80 group-hover:scale-105 transition">
-                        <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold bg-black/60 backdrop-blur-sm p-1.5 rounded">
-                            고양주경기장 조명 연출
-                        </div>
-                    </div>
-                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 shadow">
-                        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&w=400&q=80" alt="[라이트쇼 현장]" class="w-full h-32 object-cover opacity-80 group-hover:scale-105 transition">
-                        <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold bg-black/60 backdrop-blur-sm p-1.5 rounded">
-                            아미밤 라이트쇼 현장
-                        </div>
-                    </div>
-                    <div class="group relative rounded-xl overflow-hidden bg-slate-900 shadow">
-                        <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=400&q=80" alt="[시상식 현장]" class="w-full h-32 object-cover opacity-80 group-hover:scale-105 transition">
-                        <div class="absolute bottom-2 left-2 right-2 text-white text-[11px] font-bold bg-black/60 backdrop-blur-sm p-1.5 rounded">
-                            빌보드 뮤직 어워드 현장
-                        </div>
-                    </div>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded-xl shadow">
+                    <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=400&q=80" class="w-full h-32 object-cover rounded-xl shadow">
                 </div>
             </div>
 
-            <!-- 탭 5: 수익화 안내 -->
+            <!-- 탭 5: 수익화 & 구글 애드센스 안내 -->
             <div id="tab-monetization" class="tab-content hidden p-4">
                 <div class="bg-slate-900 text-white p-4 rounded-2xl mb-4">
                     <h2 class="font-black text-lg flex items-center gap-2 text-purple-300">
-                        <i class="fa-solid fa-coins text-yellow-400"></i> 웹사이트 수익화 & 실시간 피드 세팅
+                        <i class="fa-solid fa-coins text-yellow-400"></i> 웹사이트 수익화 안내
                     </h2>
-                    <p class="text-xs text-slate-300 mt-1">Gemini AI 6하원칙 원문 요약 기반 수익화 가이드입니다.</p>
-                </div>
-
-                <div class="space-y-4 text-xs text-slate-700">
-                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-sm mb-1.5 flex items-center gap-1.5">
-                            <i class="fa-solid fa-wifi text-bts-600"></i> 1. 실시간 뉴스 탐색 엔진
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            구글 뉴스 및 언론사 RSS를 실시간으로 수신합니다.
-                        </p>
-                    </div>
-
-                    <div class="bg-white p-3.5 rounded-xl border border-slate-200 shadow-sm">
-                        <h3 class="font-bold text-slate-900 text-sm mb-1.5 flex items-center gap-1.5">
-                            <i class="fa-solid fa-bolt text-bts-600"></i> 2. Gemini AI 6하원칙 상세 요약
-                        </h3>
-                        <p class="text-slate-600 leading-relaxed">
-                            기사 제목이나 형식적인 인사말 대신 6하원칙(누구, 언제, 어디서, 무엇을, 왜, 어떻게)을 중심으로 기사 본문을 분석하여 정밀 요약합니다.
-                        </p>
-                    </div>
                 </div>
             </div>
 
         </main>
 
-        <!-- 하단 고정 애드센스 배너 -->
+        <!-- 하단 고정 애드센스 배너 (닫기 가능) -->
         <div id="stickyAdBanner" class="fixed bottom-14 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-slate-900 text-white z-30 px-3 py-2 flex items-center justify-between border-t border-purple-500/30 shadow-2xl">
             <div class="flex items-center gap-2 overflow-hidden">
                 <span class="bg-bts-600 text-[9px] font-bold px-1 rounded text-white shrink-0">AD</span>
@@ -331,79 +254,33 @@
                 <i class="fa-solid fa-newspaper text-lg"></i>
                 <span class="text-[10px] font-bold">뉴스</span>
             </button>
-
             <button onclick="switchTab('schedule')" id="nav-schedule" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600">
                 <i class="fa-solid fa-calendar-check text-lg"></i>
                 <span class="text-[10px] font-bold">일정</span>
             </button>
-
             <button onclick="switchTab('community')" id="nav-community" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600">
                 <i class="fa-solid fa-comments text-lg"></i>
                 <span class="text-[10px] font-bold">커뮤니티</span>
             </button>
-
             <button onclick="switchTab('gallery')" id="nav-gallery" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600">
                 <i class="fa-solid fa-images text-lg"></i>
                 <span class="text-[10px] font-bold">갤러리</span>
             </button>
-
             <button onclick="switchTab('monetization')" id="nav-monetization" class="nav-item flex flex-col items-center gap-0.5 text-slate-400 hover:text-bts-600">
                 <i class="fa-solid fa-circle-dollar-to-slot text-lg"></i>
                 <span class="text-[10px] font-bold">수익화</span>
             </button>
         </nav>
 
-        <!-- 검색 모달 -->
-        <div id="searchModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-start justify-center pt-20 px-4 backdrop-blur-sm">
-            <div class="bg-white w-full max-w-sm rounded-2xl p-4 shadow-2xl">
-                <div class="flex items-center justify-between mb-3">
-                    <h3 class="font-bold text-slate-900 text-sm">실시간 BTS 기사 검색</h3>
-                    <button onclick="toggleModal('searchModal')" class="text-slate-400 hover:text-slate-600">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-                <div class="relative mb-3">
-                    <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="검색어 입력 (예: 월드투어, 고양, 빌보드, 지민, 뷔)" class="w-full bg-slate-100 border-0 rounded-xl py-2.5 pl-9 pr-3 text-xs focus:ring-2 focus:ring-bts-600 focus:bg-white transition">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-slate-400 text-xs"></i>
-                </div>
-                <div id="searchResults" class="max-h-60 overflow-y-auto space-y-2 text-xs">
-                    <p class="text-slate-400 text-center py-4">검색어를 입력해보세요.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- 속보 알림 모달 -->
-        <div id="noticeModal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 backdrop-blur-sm">
-            <div class="bg-white w-full max-w-sm rounded-2xl p-4 shadow-2xl">
-                <div class="flex items-center justify-between mb-3 border-b border-slate-100 pb-2">
-                    <h3 class="font-bold text-slate-900 text-sm flex items-center gap-1.5">
-                        <i class="fa-solid fa-bell text-bts-600"></i> 실시간 소식 수신 센터
-                    </h3>
-                    <button onclick="toggleModal('noticeModal')" class="text-slate-400 hover:text-slate-600">
-                        <i class="fa-solid fa-xmark text-lg"></i>
-                    </button>
-                </div>
-                <div class="space-y-3 text-xs">
-                    <div class="p-2.5 bg-purple-50 rounded-xl border border-purple-100">
-                        <span class="text-[10px] font-bold bg-bts-600 text-white px-1.5 py-0.5 rounded">실시간</span>
-                        <p class="font-bold text-slate-800 mt-1">구글 뉴스 피드가 실시간 연동되었습니다.</p>
-                        <span id="noticeTimeText" class="text-[10px] text-slate-400 mt-1 block">방금 전 자동 업데이트됨</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 기사 상세보기 및 BTS PICK 6하원칙 AI 요약 모달 -->
+        <!-- 기사 상세보기 및 6하원칙 상세 요약 모달 -->
         <div id="articleModal" class="fixed inset-0 bg-black/70 z-50 hidden flex items-end sm:items-center justify-center backdrop-blur-sm">
             <div class="bg-white w-full max-w-md h-[90vh] sm:h-[85vh] rounded-t-3xl sm:rounded-2xl flex flex-col overflow-hidden animate-slide-up">
-                <!-- 모달 헤더 -->
                 <div class="p-4 border-b border-slate-100 flex items-center justify-between bg-white sticky top-0 z-10">
-                    <span id="articleBadge" class="bg-bts-100 text-bts-700 text-xs font-bold px-2 py-0.5 rounded-full">BTS PICK</span>
+                    <span id="articleBadge" class="bg-bts-100 text-bts-700 text-xs font-bold px-2.5 py-0.5 rounded-full">BTS PICK</span>
                     <button onclick="toggleModal('articleModal')" class="p-1 text-slate-400 hover:text-slate-700">
                         <i class="fa-solid fa-xmark text-xl"></i>
                     </button>
                 </div>
-                <!-- 모달 본문 (스크롤) -->
                 <div class="p-5 overflow-y-auto flex-1 space-y-4">
                     <h2 id="articleTitle" class="text-lg font-black text-slate-900 leading-snug"></h2>
                     <div class="flex items-center justify-between text-xs text-slate-400 border-b border-slate-100 pb-3">
@@ -411,67 +288,40 @@
                         <span id="articleTime"><i class="fa-regular fa-clock"></i> 방금 전</span>
                     </div>
                     
-                    <!-- ⚡ Gemini AI 기반 6하원칙 기사 요약 박스 -->
+                    <!-- ⚡ 6하원칙 기반 상세 분석 요약 박스 -->
                     <div class="bg-gradient-to-br from-purple-950 via-purple-900 to-bts-900 text-white p-4 rounded-2xl border border-purple-400/30 shadow-lg">
-                        <div class="flex items-center justify-between mb-2">
+                        <div class="flex items-center justify-between mb-3 border-b border-purple-700/50 pb-2">
                             <span class="font-black text-xs text-yellow-300 flex items-center gap-1.5">
-                                <i class="fa-solid fa-bolt text-yellow-400"></i> BTS PICK 기사 원문 6하원칙 상세 요약
+                                <i class="fa-solid fa-bolt text-yellow-400"></i> BTS PICK 기사 원문 상세 요약
                             </span>
-                            <span class="text-[9px] bg-purple-800/80 text-purple-200 px-2 py-0.5 rounded-full font-bold">Gemini AI</span>
+                            <span class="text-[9px] bg-purple-800/90 text-purple-200 px-2 py-0.5 rounded-full font-bold">Gemini AI</span>
                         </div>
-                        <div id="articleSummary" class="text-xs text-purple-100 leading-relaxed font-medium space-y-1.5">
-                            <!-- AI 요약 결과가 동적으로 주입됩니다 -->
+                        <div id="articleSummary" class="text-xs text-purple-100 leading-relaxed font-medium space-y-2">
+                            <!-- 로봇이 만든 요약이 여기에 들어갑니다 -->
                         </div>
                     </div>
 
-                    <img id="articleImage" src="" alt="[기사 포토]" class="w-full h-48 object-cover rounded-xl shadow-sm" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80'">
+                    <img id="articleImage" src="" alt="[기사 이미지]" class="w-full h-48 object-cover rounded-xl shadow-sm" onerror="this.src='https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80'">
                     
                     <div id="articleBody" class="text-xs text-slate-700 leading-relaxed space-y-3"></div>
 
-                    <!-- 🔗 공식 언론사 원문 기사 전체 읽기 버튼 (현재 페이지에 전혀 영향을 주지 않고 새로운 브라우저 탭으로만 열림) -->
+                    <!-- 🔗 공식 언론사 원문 기사 전체 읽기 (현재 창 유지 + 새 탭 오픈) -->
                     <div class="pt-2">
-                        <button onclick="goToOriginalArticle()" class="w-full bg-slate-900 hover:bg-black text-white font-bold text-xs py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow active:scale-[0.99] cursor-pointer">
+                        <a id="articleOriginalLink" href="#" target="_blank" rel="noopener noreferrer" class="w-full bg-slate-900 hover:bg-black text-white font-bold text-xs py-3.5 px-4 rounded-xl flex items-center justify-center gap-2 transition shadow active:scale-[0.99] cursor-pointer text-center block">
                             <span>공식 언론사 원문 기사 전체 읽기</span>
                             <i class="fa-solid fa-arrow-up-right-from-square text-xs text-purple-300"></i>
-                        </button>
+                        </a>
                     </div>
-
-                    <!-- 기사 내부 구글 광고 -->
-                    <div class="my-4 p-3 bg-slate-100 border border-slate-200 rounded-xl text-center">
-                        <span class="text-[9px] text-slate-400 uppercase tracking-widest block mb-1">ADVERTISEMENT</span>
-                        <div class="bg-slate-200 text-slate-600 py-4 text-xs font-semibold rounded">
-                            구글 기사 하단 자동 광고 스폿 (Google Article Ad)
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 모달 푸터 공유하기 -->
-                <div class="p-3 border-t border-slate-100 bg-slate-50 flex items-center justify-between">
-                    <button onclick="shareArticle()" class="flex-1 bg-bts-600 hover:bg-bts-700 text-white font-bold text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-share-nodes"></i> 소식 아미들과 공유하기
-                    </button>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- 핵심 전역 자바스크립트 로직 -->
     <script>
         let liveNewsArticles = [];
         let currentCategory = 'all';
-        let currentSubFilter = 'all';
         let favorites = JSON.parse(localStorage.getItem('bts_favs') || '[]');
-        let selectedArticle = null;
-
-        const concertSchedules = [
-            { date: '2026.04.09 - 04.12', city: '고양, 대한민국 🇰🇷', stadium: '고양종합운동장 주경기장', status: '매진 완료', region: 'asia' },
-            { date: '2026.04.17 - 04.18', city: '도쿄, 일본 🇯🇵', stadium: '도쿄 돔 (Tokyo Dome)', status: '예매 진행중', region: 'asia' },
-            { date: '2026.04.25 - 04.26', city: '탬파, 미국 🇺🇸', stadium: 'Raymond James Stadium', status: '예매 오픈 예정', region: 'na' },
-            { date: '2026.05.07 - 05.10', city: '멕시코시티, 멕시코 🇲🇽', stadium: 'Estadio GNP Seguros', status: '예매 오픈 예정', region: 'na' },
-            { date: '2026.06.12 - 06.13', city: '부산, 대한민국 🇰🇷', stadium: '부산아시아드주경기장', status: '추후 공지', region: 'asia' },
-            { date: '2026.07.06 - 07.07', city: '런던, 영국 🇬🇧', stadium: 'Tottenham Hotspur Stadium', status: '예매 오픈 예정', region: 'eu' }
-        ];
 
         const bgImages = [
             'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=80',
@@ -480,7 +330,6 @@
             'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80'
         ];
 
-        // --- 2. 구글 번역 위젯 초기화 ---
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({
                 pageLanguage: 'ko',
@@ -489,221 +338,8 @@
             }, 'google_translate_element');
         }
 
-        // --- 3. ⚡ Gemini AI 6하원칙 기반 상세 요약 엔진 ---
-        async function fetchGeminiSummaryForArticle(article) {
-            if (article.aiSummary && article.aiSummary.length > 0) {
-                return article.aiSummary;
-            }
-
-            const systemPrompt = `너는 방탄소년단(BTS) 전문 K-POP 뉴스 요약 AI 에이전트이다.
-주어진 기사 제목과 보도 언론사를 바탕으로 구글 실시간 검색을 진행하여 원문 본문 전체를 파악하라.
-
-[필수 지침]
-1. '[원문 보도]', '[핵심 내용]', '[원문 읽기]', '네이트에서 전한 소식입니다', '상세 보도는 하단 버튼을 눌러' 와 같은 상투적이거나 안내성 문구, 인사말을 절대로 작성하지 마라.
-2. 기사의 제목을 그대로 복사하거나 무의미하게 재탕하지 마라.
-3. 기사 원문의 구체적인 사실에 기반하여 6하원칙(누구, 언제, 어디서, 무엇을, 왜, 어떻게)을 중심으로 내용을 비교적 상세하고 명확하게 3~4줄(①, ②, ③, ④)로 정리하라.
-4. 오직 기사의 사실 정보만을 명료한 문장으로 전달하라.`;
-
-            const userQuery = `기사 제목: "${article.title}"\n보도 언론사: "${article.source}"\n위 기사의 실제 원문 본문을 탐색하여 [원문 보도]나 [원문 읽기] 같은 상투적 안내문구 없이, 6하원칙 위주로 핵심 사실을 비교적 상세하게 3~4줄(①, ②, ③, ④)로 요약해줘.`;
-
-            const apiKey = ""; // Canvas 환경에서 자동으로 API Key가 인젝션됩니다.
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
-
-            const payload = {
-                contents: [{ role: "user", parts: [{ text: userQuery }] }],
-                tools: [{ "google_search": {} }],
-                systemInstruction: {
-                    parts: [{ text: systemPrompt }]
-                }
-            };
-
-            try {
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                if (!response.ok) throw new Error('Gemini API 수신 오류');
-
-                const result = await response.json();
-                const candidate = result.candidates?.[0];
-                const generatedText = candidate?.content?.parts?.[0]?.text;
-
-                if (generatedText) {
-                    const lines = generatedText
-                        .split('\n')
-                        .map(l => l.trim())
-                        .filter(l => l.length > 0 && !l.startsWith('http') && !l.includes('원문 보도') && !l.includes('원문 읽기'));
-                    
-                    if (lines.length > 0) {
-                        article.aiSummary = lines;
-                        return lines;
-                    }
-                }
-            } catch (err) {
-                console.warn('Gemini AI 원문 요약 생성 중 백업 처리:', err);
-            }
-
-            // AI 지연 시 상투어 없는 본문 기반 직접 요약 추출
-            const fallbackLines = extractCleanSentences(article.title, article.content);
-            article.aiSummary = fallbackLines;
-            return fallbackLines;
-        }
-
-        // 상투어 없는 본문 실시간 문장 추출기
-        function extractCleanSentences(title, content) {
-            const cleanText = (content || title).replace(/<[^>]*>?/gm, '').replace(/구글 뉴스|자세히 보기|네이트|네이버/gi, '').trim();
-            const sentences = cleanText.split(/(?<=[.?!])\s+/).filter(s => s.length > 10);
-
-            if (sentences.length >= 3) {
-                return [
-                    `① ${sentences[0]}`,
-                    `② ${sentences[1]}`,
-                    `③ ${sentences[2]}`
-                ];
-            } else if (sentences.length >= 2) {
-                return [
-                    `① ${sentences[0]}`,
-                    `② ${sentences[1]}`,
-                    `③ ${title}`
-                ];
-            }
-
-            return [
-                `① ${title}`,
-                `② ${cleanText.substring(0, 80)}...`
-            ];
-        }
-
-        // --- 4. 실시간 RSS 뉴스 수집 메인 로직 ---
-        async function fetchLiveBTSNews(isManualRefresh = false) {
-            const refreshIcon = document.getElementById('refreshIcon');
-            const statusText = document.getElementById('liveStatusText');
-            if (refreshIcon) refreshIcon.classList.add('animate-spin-custom');
-            if (statusText) statusText.innerText = '수신중...';
-
-            const rssQuery = 'BTS 방탄소년단';
-            const googleRssUrl = `https://news.google.com/rss/search?q=${encodeURIComponent(rssQuery)}&hl=ko&gl=KR&ceid=KR:ko`;
-            const primaryApi = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(googleRssUrl)}`;
-
-            try {
-                let fetchedItems = [];
-                const res = await fetch(primaryApi);
-                const data = await res.json();
-
-                if (data.status === 'ok' && data.items && data.items.length > 0) {
-                    fetchedItems = parseRss2JsonItems(data.items);
-                } else {
-                    fetchedItems = await fetchViaBackupProxy(googleRssUrl);
-                }
-
-                if (fetchedItems.length > 0) {
-                    liveNewsArticles = fetchedItems;
-                } else {
-                    liveNewsArticles = getFallbackNewsData();
-                }
-
-            } catch (err) {
-                console.warn('RSS 수신 연동 중 백업 모드 전환:', err);
-                liveNewsArticles = getFallbackNewsData();
-            } finally {
-                if (refreshIcon) refreshIcon.classList.remove('animate-spin-custom');
-                if (statusText) statusText.innerText = '실시간 연결됨';
-                
-                renderHotNewsHero();
-                renderNewsFeed();
-
-                if (isManualRefresh) {
-                    alert('최신 BTS 실시간 뉴스가 새로고침되었습니다!');
-                }
-            }
-        }
-
-        function parseRss2JsonItems(items) {
-            return items.map((item, idx) => {
-                const title = item.title ? item.title.replace(/<[^>]*>?/gm, '') : 'BTS 최신 소식';
-                const source = item.author || extractSourceFromTitle(title) || '글로벌 언론사';
-                const pubDate = item.pubDate ? formatTimeAgo(new Date(item.pubDate)) : '방금 전';
-                const cleanDesc = item.description ? item.description.replace(/<[^>]*>?/gm, '') : title;
-                
-                const category = categorizeNews(title + ' ' + cleanDesc);
-                const subCategory = categorizeSubNews(title + ' ' + cleanDesc);
-
-                return {
-                    id: idx + 1000,
-                    title: title,
-                    source: source,
-                    time: pubDate,
-                    views: (Math.floor(Math.random() * 40) + 5) + '.' + Math.floor(Math.random() * 9) + 'K',
-                    badge: category === 'breaking' ? '속보' : (category === 'tour' ? '월드투어' : 'BTS PICK'),
-                    badgeBg: category === 'breaking' ? 'bg-red-500' : (category === 'tour' ? 'bg-emerald-600' : 'bg-bts-600'),
-                    category: category,
-                    subCategory: subCategory,
-                    link: item.link || '',
-                    image: bgImages[idx % bgImages.length],
-                    summaryPreview: extractCleanSentences(title, cleanDesc),
-                    content: cleanDesc || '기사 상세 및 공식 원문은 아래 버튼을 클릭하여 확인하실 수 있습니다.'
-                };
-            });
-        }
-
-        async function fetchViaBackupProxy(rssUrl) {
-            const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(rssUrl)}`;
-            const res = await fetch(proxyUrl);
-            const xmlText = await res.text();
-            const parser = new DOMParser();
-            const xmlDoc = parser.parseFromString(xmlText, "text/xml");
-            const xmlItems = Array.from(xmlDoc.querySelectorAll("item"));
-
-            return xmlItems.map((item, idx) => {
-                const title = item.querySelector("title")?.textContent || "BTS 뉴스";
-                const link = item.querySelector("link")?.textContent || "";
-                const pubDateText = item.querySelector("pubDate")?.textContent;
-                const pubDate = pubDateText ? formatTimeAgo(new Date(pubDateText)) : "방금 전";
-                const source = item.querySelector("source")?.textContent || extractSourceFromTitle(title) || "구글 뉴스";
-                const desc = item.querySelector("description")?.textContent || title;
-
-                const category = categorizeNews(title + ' ' + desc);
-                const subCategory = categorizeSubNews(title + ' ' + desc);
-
-                return {
-                    id: idx + 2000,
-                    title: title,
-                    source: source,
-                    time: pubDate,
-                    views: (Math.floor(Math.random() * 30) + 10) + '.2K',
-                    badge: 'BTS PICK',
-                    badgeBg: 'bg-bts-600',
-                    category: category,
-                    subCategory: subCategory,
-                    link: link,
-                    image: bgImages[idx % bgImages.length],
-                    summaryPreview: extractCleanSentences(title, desc),
-                    content: desc
-                };
-            });
-        }
-
-        function extractSourceFromTitle(title) {
-            const match = title.match(/ - ([^-]+)$/);
-            return match ? match[1].trim() : '글로벌 뉴스';
-        }
-
-        function categorizeNews(text) {
-            if (/속보|단독|긴급|공지|위버스/i.test(text)) return 'breaking';
-            if (/투어|콘서트|티켓|공연|고양|매진|경기장|스태디움/i.test(text)) return 'tour';
-            if (/빌보드|차트|음원|앨범|신곡|HOT 100|1위|스트리밍/i.test(text)) return 'billboard';
-            return 'pick';
-        }
-
-        function categorizeSubNews(text) {
-            if (/티켓|콘서트|공연|월드투어/i.test(text)) return 'concert';
-            if (/앨범|음원|신곡|스트리밍|뮤직/i.test(text)) return 'album';
-            return 'member';
-        }
-
         function formatTimeAgo(date) {
+            if (isNaN(date.getTime())) return '방금 전';
             const now = new Date();
             const diffMin = Math.floor((now - date) / (1000 * 60));
             if (diffMin < 1) return '방금 전';
@@ -713,57 +349,84 @@
             return `${Math.floor(diffHour / 24)}일 전`;
         }
 
-        function getFallbackNewsData() {
-            return [
-                {
-                    id: 1,
-                    category: 'breaking',
-                    subCategory: 'concert',
-                    source: '네이트 뉴스',
-                    title: 'BTS진, 끝없는 기럭지에 압도적 어깨…‘셔츠핏 끝판왕’',
-                    time: '5분 전',
-                    views: '52.1K',
-                    badge: '속보',
-                    badgeBg: 'bg-red-500',
-                    image: bgImages[0],
-                    link: 'https://news.nate.com',
-                    summaryPreview: [
-                        '① BTS 진이 화보 비하인드에서 압도적인 피지컬과 비율을 선보였습니다.',
-                        '② 완벽한 셔츠핏 스타일링으로 전 세계 팬들의 시선을 사로잡았습니다.'
-                    ],
-                    content: `BTS 진이 독보적인 셔츠핏 비주얼과 완벽한 비율로 글로벌 팬들의 감탄을 자아냈습니다.`
-                },
-                {
-                    id: 2,
-                    category: 'pick',
-                    subCategory: 'member',
-                    source: 'Weverse Official',
-                    title: 'BTS 팬 커뮤니티 전 세계 아미를 위한 실시간 AI 다국어 번역 및 6하원칙 요약 도입',
-                    time: '12분 전',
-                    views: '18.4K',
-                    badge: 'BTS PICK',
-                    badgeBg: 'bg-bts-600',
-                    image: bgImages[1],
-                    link: 'https://weverse.io/bts',
-                    summaryPreview: [
-                        '① 전 세계 아미를 위해 실시간 AI 다국어 번역 솔루션이 도입되었습니다.',
-                        '② Gemini AI가 6하원칙에 맞춘 핵심 소식 요약을 정밀 제공합니다.'
-                    ],
-                    content: `전 세계 팬들의 소통 편의성과 최신 소식 체류 경험을 극대화하기 위한 신규 기능이 정상 가동 중입니다.`
+        // --- 🚀 핵심: 파이썬 로봇이 생성한 news_data.json 읽어오기 ---
+        async function fetchLiveBTSNews(isManualRefresh = false) {
+            const refreshIcon = document.getElementById('refreshIcon');
+            const statusText = document.getElementById('liveStatusText');
+            if (refreshIcon) refreshIcon.classList.add('animate-spin-custom');
+            if (statusText) statusText.innerText = '수신중...';
+
+            try {
+                // 브라우저 캐시를 무시하고 최신 파일을 가져오기 위해 시간값을 붙입니다.
+                const response = await fetch('news_data.json?t=' + new Date().getTime());
+                
+                if (!response.ok) {
+                    throw new Error('데이터 파일이 아직 없습니다.');
                 }
-            ];
+                
+                const rawData = await response.json();
+                
+                liveNewsArticles = rawData.map((item, idx) => {
+                    // 파이썬 Gemini가 만들어준 문자열 요약을 줄바꿈 단위로 분리
+                    let summaryLines = item.summary ? item.summary.split('\n').filter(l => l.trim().length > 0) : ['AI 요약 대기 중...'];
+                    
+                    // 만약 마크다운(*, #)이 섞여있다면 깔끔하게 제거
+                    summaryLines = summaryLines.map(l => l.replace(/[*#]/g, '').trim());
+
+                    return {
+                        id: idx + 1000,
+                        title: item.title,
+                        source: item.source || '글로벌 언론사',
+                        time: formatTimeAgo(new Date(item.time)),
+                        views: (Math.floor(Math.random() * 40) + 5) + '.' + Math.floor(Math.random() * 9) + 'K',
+                        badge: idx === 0 ? '속보' : 'BTS PICK',
+                        badgeBg: idx === 0 ? 'bg-red-500' : 'bg-bts-600',
+                        category: idx === 0 ? 'breaking' : 'pick',
+                        link: item.link,
+                        image: bgImages[idx % bgImages.length],
+                        summaryLines: summaryLines, // 배열 형태로 저장
+                        content: '본 기사의 전체 원문은 아래 [공식 언론사 원문 기사 전체 읽기] 버튼을 누르시면 해당 언론사에서 직접 확인하실 수 있습니다.'
+                    };
+                });
+
+            } catch (err) {
+                console.warn('AI 뉴스 데이터를 가져오는 데 실패했습니다. 아직 로봇이 파일을 만들지 않았습니다.', err);
+                document.getElementById('newsFeedList').innerHTML = `
+                    <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-400">
+                        <i class="fa-solid fa-robot text-3xl mb-2"></i>
+                        <p class="text-xs font-semibold">파이썬 로봇이 아직 요약 파일을 깃허브에 올리지 않았습니다.</p>
+                        <p class="text-[10px] mt-1">깃허브 Actions에서 Run workflow가 완전히 끝난 후 새로고침 해주세요!</p>
+                    </div>
+                `;
+                if (refreshIcon) refreshIcon.classList.remove('animate-spin-custom');
+                if (statusText) statusText.innerText = '대기중';
+                return; // 파일이 없으면 여기서 멈춤
+            }
+
+            if (refreshIcon) refreshIcon.classList.remove('animate-spin-custom');
+            if (statusText) statusText.innerText = '수신완료';
+            
+            renderHotNewsHero();
+            renderNewsFeed();
+
+            if (isManualRefresh) {
+                alert('파이썬 로봇의 최신 요약 데이터가 새로고침되었습니다!');
+            }
         }
 
-        // --- 5. 핫뉴스 히어로 렌더링 ---
         function renderHotNewsHero() {
             const heroContainer = document.getElementById('hotNewsHero');
-            if (!heroContainer) return;
+            if (!heroContainer || liveNewsArticles.length === 0) return;
 
-            const heroArticle = liveNewsArticles[0] || getFallbackNewsData()[0];
+            const heroArticle = liveNewsArticles[0];
+            
+            // 요약문 상위 2줄만 보여주기
+            const preview1 = heroArticle.summaryLines[0] || '';
+            const preview2 = heroArticle.summaryLines[1] || '';
 
             heroContainer.onclick = () => openNewsDetail(heroArticle.id);
             heroContainer.innerHTML = `
-                <img src="${heroArticle.image}" alt="[헤드라인 포토]" class="w-full h-48 object-cover opacity-60 group-hover:scale-105 transition duration-500" onerror="this.src='${bgImages[0]}'">
+                <img src="${heroArticle.image}" class="w-full h-48 object-cover opacity-60 group-hover:scale-105 transition duration-500">
                 <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent p-4 flex flex-col justify-between">
                     <div class="flex items-center justify-between">
                         <span class="${heroArticle.badgeBg} text-white font-bold text-[10px] px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow">
@@ -777,10 +440,13 @@
                         </h3>
                         
                         <div class="bg-purple-950/85 border border-purple-400/40 backdrop-blur-md p-2.5 rounded-xl text-[11px] text-purple-200 shadow-md">
-                            <span class="font-bold text-yellow-300 flex items-center gap-1 mb-0.5">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> Gemini AI 6하원칙 실시간 요약 지원
+                            <span class="font-bold text-yellow-300 flex items-center gap-1 mb-1">
+                                <i class="fa-solid fa-bolt"></i> BTS PICK 기사 핵심 요약
                             </span>
-                            <p class="text-purple-100 font-normal truncate">터치 시 Gemini AI가 원문을 직접 탐색하여 6하원칙으로 정리합니다.</p>
+                            <div class="space-y-0.5 font-normal text-purple-100 text-[11px]">
+                                <p class="truncate">${preview1}</p>
+                                <p class="truncate">${preview2}</p>
+                            </div>
                         </div>
 
                         <div class="flex items-center justify-between mt-2.5 text-slate-300 text-xs">
@@ -792,37 +458,14 @@
             `;
         }
 
-        // --- 6. 뉴스 피드 리스트 렌더링 ---
         function renderNewsFeed() {
             const container = document.getElementById('newsFeedList');
             const countBadge = document.getElementById('newsCountBadge');
             if (!container) return;
 
             container.innerHTML = '';
-
-            let filtered = liveNewsArticles;
-
-            if (currentCategory === 'favorite') {
-                filtered = liveNewsArticles.filter(item => favorites.includes(item.id));
-            } else if (currentCategory !== 'all') {
-                filtered = liveNewsArticles.filter(item => item.category === currentCategory);
-            }
-
-            if (currentSubFilter !== 'all') {
-                filtered = filtered.filter(item => item.subCategory === currentSubFilter);
-            }
-
+            let filtered = currentCategory === 'all' ? liveNewsArticles : liveNewsArticles.filter(item => item.category === currentCategory);
             if (countBadge) countBadge.innerText = filtered.length;
-
-            if (filtered.length === 0) {
-                container.innerHTML = `
-                    <div class="text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-400">
-                        <i class="fa-regular fa-folder-open text-3xl mb-2"></i>
-                        <p class="text-xs font-semibold">해당 카테고리의 실시간 뉴스가 없습니다.</p>
-                    </div>
-                `;
-                return;
-            }
 
             filtered.forEach((item, index) => {
                 const isFav = favorites.includes(item.id);
@@ -833,11 +476,9 @@
                     openNewsDetail(item.id);
                 };
 
-                const previewList = item.aiSummary && item.aiSummary.length > 0 
-                    ? item.aiSummary.slice(0, 2)
-                    : (item.summaryPreview || extractCleanSentences(item.title, item.content)).slice(0, 2);
-
-                const summaryPreviewHtml = previewList.map(s => `<p class="truncate">${s}</p>`).join('');
+                // 요약문 상위 2줄만 보여주기
+                const preview1 = item.summaryLines[0] || '';
+                const preview2 = item.summaryLines[1] || '';
 
                 card.innerHTML = `
                     <div class="flex items-center justify-between mb-2">
@@ -849,9 +490,6 @@
                         </div>
                         <div class="flex items-center gap-2">
                             <span class="text-slate-400 text-[11px]">${item.time}</span>
-                            <button onclick="toggleFavorite(${item.id})" class="fav-btn text-slate-300 hover:text-red-500 ${isFav ? 'text-red-500' : ''} transition">
-                                <i class="${isFav ? 'fa-solid' : 'fa-regular'} fa-bookmark text-sm"></i>
-                            </button>
                         </div>
                     </div>
                     
@@ -859,13 +497,14 @@
                         ${item.title}
                     </h3>
 
-                    <!-- 상투어 문구 없이 기사 본문 직접 요약 노출 -->
+                    <!-- 파이썬 로봇이 만든 진짜 요약 내용 -->
                     <div class="my-2 p-2.5 bg-purple-50/90 rounded-xl border border-purple-100 text-[11px]">
                         <span class="font-bold text-bts-700 flex items-center gap-1 mb-1">
                             <i class="fa-solid fa-bolt text-yellow-500"></i> BTS PICK 핵심 요약
                         </span>
                         <div class="text-slate-700 space-y-0.5 font-medium">
-                            ${summaryPreviewHtml}
+                            <p class="truncate">${preview1}</p>
+                            <p class="truncate">${preview2}</p>
                         </div>
                     </div>
 
@@ -875,85 +514,37 @@
                     </div>
                 `;
                 container.appendChild(card);
-
-                if ((index + 1) % 3 === 0) {
-                    const adBox = document.createElement('div');
-                    adBox.className = "my-3 p-3 bg-slate-50 border border-dashed border-purple-200 rounded-xl text-center";
-                    adBox.innerHTML = `
-                        <span class="text-[9px] text-purple-400 font-bold uppercase tracking-wider block mb-1">In-Feed Sponsored Ad</span>
-                        <div class="bg-purple-100/70 text-purple-900 py-4 text-xs font-semibold rounded-lg border border-purple-200">
-                            📢 구글 애드센스 인피드 맞춤 광고 스폿
-                        </div>
-                    `;
-                    container.appendChild(adBox);
-                }
             });
         }
 
-        // --- 10. 기사 상세 모달 열기 & Gemini AI 6하원칙 요약 연동 ---
-        async function openNewsDetail(id) {
-            selectedArticle = liveNewsArticles.find(n => n.id === id) || liveNewsArticles[0];
-            if (!selectedArticle) return;
+        function openNewsDetail(id) {
+            const article = liveNewsArticles.find(n => n.id === id);
+            if (!article) return;
 
-            document.getElementById('articleBadge').innerText = selectedArticle.badge;
-            document.getElementById('articleTitle').innerText = selectedArticle.title;
-            document.getElementById('articleSource').innerText = `출처: ${selectedArticle.source}`;
-            document.getElementById('articleTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${selectedArticle.time}`;
-            document.getElementById('articleImage').src = selectedArticle.image;
-            document.getElementById('articleBody').innerHTML = `<p>${selectedArticle.content}</p>`;
+            document.getElementById('articleBadge').innerText = article.badge;
+            document.getElementById('articleTitle').innerText = article.title;
+            document.getElementById('articleSource').innerText = `출처: ${article.source}`;
+            document.getElementById('articleTime').innerHTML = `<i class="fa-regular fa-clock"></i> ${article.time}`;
+            document.getElementById('articleImage').src = article.image;
 
+            // 로봇이 만든 전체 요약문 렌더링
             const summaryContainer = document.getElementById('articleSummary');
+            summaryContainer.innerHTML = article.summaryLines.map(line => `<p class="leading-relaxed mb-1">${line}</p>`).join('');
 
-            if (selectedArticle.aiSummary && selectedArticle.aiSummary.length > 0) {
-                summaryContainer.innerHTML = selectedArticle.aiSummary.map(line => `<p class="leading-relaxed">${line}</p>`).join('');
-                toggleModal('articleModal');
-            } else {
-                // 실시간 6하원칙 탐색 로딩 표시
-                summaryContainer.innerHTML = `
-                    <div class="flex items-center gap-2 text-yellow-300 font-bold animate-pulse text-xs py-1">
-                        <i class="fa-solid fa-wand-magic-sparkles text-sm text-yellow-400"></i>
-                        <span>Gemini AI가 원문 본문을 탐색하여 6하원칙 중심으로 요약 중입니다...</span>
-                    </div>
-                `;
-                toggleModal('articleModal');
-
-                const aiLines = await fetchGeminiSummaryForArticle(selectedArticle);
-                summaryContainer.innerHTML = aiLines.map(line => `<p class="leading-relaxed">${line}</p>`).join('');
-                renderNewsFeed();
+            // 🔗 [공식 언론사 원문 기사 전체 읽기] 버튼의 링크 설정
+            const linkElem = document.getElementById('articleOriginalLink');
+            if (linkElem) {
+                linkElem.href = article.link || 'https://news.google.com/search?q=BTS';
             }
+
+            toggleModal('articleModal');
         }
 
-        // --- 11. 🚀 공식 언론사 원문 이동 (현재 웹페이지 변경 없이 독립된 새 창으로만 열기) ---
-        function goToOriginalArticle() {
-            if (!selectedArticle) return;
-
-            let targetUrl = selectedArticle.link;
-
-            if (!targetUrl || targetUrl === '#' || targetUrl.length < 5) {
-                const searchKeyword = encodeURIComponent(selectedArticle.title.replace(/[\[\]]/g, ''));
-                targetUrl = `https://news.google.com/search?q=${searchKeyword}&hl=ko&gl=KR&ceid=KR:ko`;
-            }
-
-            try {
-                // 현재 페이지에는 아무런 영향이 없도록 새 창/새 탭에서만 원문 기사를 엽니다.
-                const newWindow = window.open(targetUrl, '_blank', 'noopener,noreferrer');
-                
-                // 만약 브라우저 팝업 차단으로 창이 열리지 않았을 경우 예외 처리
-                if (!newWindow || newWindow.closed || typeof newWindow.closed === 'undefined') {
-                    window.open(targetUrl, '_blank');
-                }
-            } catch (err) {
-                window.open(targetUrl, '_blank');
-            }
-        }
-
-        // --- 12. 모달 제어 ---
         function toggleModal(modalId) {
             const target = document.getElementById(modalId);
             if (target) target.classList.toggle('hidden');
         }
 
-        // --- 13. 탭 전환 ---
         function switchTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.classList.add('hidden'));
             const targetTab = document.getElementById(`tab-${tabName}`);
@@ -967,82 +558,6 @@
             if (activeNav) {
                 activeNav.classList.add('text-bts-600');
                 activeNav.classList.remove('text-slate-400');
-            }
-
-            if (tabName === 'schedule') renderSchedule();
-            if (tabName === 'community') loadFanWall();
-        }
-
-        // --- 14. 검색 로직 ---
-        function handleSearch() {
-            const query = document.getElementById('searchInput').value.toLowerCase();
-            const resultsContainer = document.getElementById('searchResults');
-
-            if (!query.trim()) {
-                resultsContainer.innerHTML = `<p class="text-slate-400 text-center py-4">검색어를 입력해보세요.</p>`;
-                return;
-            }
-
-            const matched = liveNewsArticles.filter(n => n.title.toLowerCase().includes(query) || n.content.toLowerCase().includes(query));
-
-            if (matched.length === 0) {
-                resultsContainer.innerHTML = `<p class="text-slate-400 text-center py-4">검색 결과가 없습니다.</p>`;
-            } else {
-                resultsContainer.innerHTML = matched.map(m => `
-                    <div onclick="toggleModal('searchModal'); openNewsDetail(${m.id})" class="p-2.5 bg-slate-50 hover:bg-purple-50 rounded-lg cursor-pointer border border-slate-100 transition">
-                        <p class="font-bold text-slate-800 truncate">${m.title}</p>
-                        <span class="text-[10px] text-slate-400">${m.source} · ${m.time}</span>
-                    </div>
-                `).join('');
-            }
-        }
-
-        // --- 15. 팬 커뮤니티 게시판 로직 ---
-        let fanMessages = JSON.parse(localStorage.getItem('bts_fan_messages') || 'null') || [
-            { name: '보라해💜', country: '대한민국 🇰🇷', msg: '2026년 월드투어 고양 콘서트에서 만나요! 영원히 아미!', time: '방금 전' },
-            { name: 'ARMY_LA', country: '미국 🇺🇸', msg: 'So excited for the 2026 World Tour! WE PURPLE YOU BTS!', time: '5분 전' },
-            { name: 'Sakura_BTS', country: '일본 🇯🇵', msg: '東京ドームで待っています！BTS最高！', time: '12분 전' }
-        ];
-
-        function loadFanWall() {
-            const container = document.getElementById('fanWallList');
-            if (!container) return;
-            container.innerHTML = fanMessages.map(m => `
-                <div class="bg-white p-3 rounded-xl border border-slate-200/80 shadow-sm text-xs">
-                    <div class="flex items-center justify-between mb-1">
-                        <span class="font-bold text-slate-800">${m.name} <span class="font-normal text-slate-400">(${m.country})</span></span>
-                        <span class="text-[10px] text-slate-400">${m.time}</span>
-                    </div>
-                    <p class="text-slate-700">${m.msg}</p>
-                </div>
-            `).join('');
-        }
-
-        function postFanMessage() {
-            const name = document.getElementById('fanName').value.trim() || '익명 아미';
-            const country = document.getElementById('fanCountry').value.trim() || 'Global 🌐';
-            const msg = document.getElementById('fanMsg').value.trim();
-
-            if (!msg) {
-                alert('응원 메시지를 입력해주세요!');
-                return;
-            }
-
-            fanMessages.unshift({ name, country, msg, time: '방금 전' });
-            localStorage.setItem('bts_fan_messages', JSON.stringify(fanMessages));
-            document.getElementById('fanMsg').value = '';
-            loadFanWall();
-        }
-
-        function shareArticle() {
-            if (navigator.share) {
-                navigator.share({
-                    title: 'BTS HUB - 실시간 뉴스',
-                    url: window.location.href
-                }).catch(() => {});
-            } else {
-                navigator.clipboard.writeText(window.location.href);
-                alert('BTS HUB 웹사이트 링크가 복사되었습니다!');
             }
         }
 
