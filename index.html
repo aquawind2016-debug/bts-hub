@@ -5,61 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTS HUB</title>
     <style>
-        body { font-family: 'Apple SD Gothic Neo', 'Pretendard', sans-serif; background-color: #f4f6f8; margin: 0; padding: 0; padding-bottom: 70px; }
-        .header { background: #fff; padding: 15px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #eee; }
-        .header .logo { background: #000; color: #fff; padding: 5px 10px; border-radius: 5px; font-weight: 900; font-style: italic; }
+        body { font-family: 'Apple SD Gothic Neo', 'Pretendard', sans-serif; background-color: #f4f5f7; margin: 0; padding: 0; padding-bottom: 80px; color: #333; }
+        .app-container { max-width: 600px; margin: 0 auto; background: #f4f5f7; min-height: 100vh; position: relative; }
+        
+        /* 헤더 */
+        .header { background: #fff; padding: 15px 20px; display: flex; align-items: center; border-bottom: 1px solid #eaeaea; position: sticky; top: 0; z-index: 100; }
+        .header .logo { background: #000; color: #fff; padding: 4px 8px; border-radius: 4px; font-weight: 900; font-style: italic; font-size: 18px; letter-spacing: -0.5px; }
         .header .logo span { color: #8a2be2; }
-        .content { padding: 15px; max-width: 600px; margin: 0 auto; }
-        .card { background: #fff; border-radius: 12px; padding: 15px; margin-bottom: 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); }
-        .news-summary { background: #fcf4ff; border-radius: 8px; padding: 12px; margin-top: 10px; font-size: 14px; line-height: 1.5; }
-        .news-summary-title { color: #8a2be2; font-weight: bold; margin-bottom: 5px; font-size: 13px; }
-        .schedule-filters { display: flex; gap: 8px; margin-bottom: 15px; }
-        .schedule-filters button { border: none; background: #eee; padding: 8px 15px; border-radius: 20px; font-weight: bold; cursor: pointer; color: #555; }
-        .schedule-filters button.active { background: #8a2be2; color: #fff; }
-        .btn-ticket { display: inline-block; background: #8a2be2; color: #fff; text-decoration: none; padding: 10px; border-radius: 8px; margin-top: 12px; font-weight: bold; font-size: 14px; text-align: center; width: 100%; box-sizing: border-box; }
-        .bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; background: #fff; display: flex; justify-content: space-around; padding: 10px 0; border-top: 1px solid #ddd; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); }
-        .bottom-nav div { text-align: center; color: #aaa; font-size: 12px; cursor: pointer; }
-        .bottom-nav div.active { color: #8a2be2; font-weight: bold; }
+        
+        /* 공통 콘텐츠 */
+        .content { padding: 20px; }
+        .page-title { font-size: 20px; font-weight: 800; margin: 0 0 5px 0; color: #111; }
+        .page-subtitle { font-size: 13px; color: #777; margin: 0 0 20px 0; }
+        
+        /* 상단 필터 버튼 (아시아, 북미 등) */
+        .filters { display: flex; gap: 8px; margin-bottom: 20px; overflow-x: auto; padding-bottom: 5px; }
+        .filters::-webkit-scrollbar { display: none; }
+        .filter-btn { padding: 8px 16px; border: none; background: #eef0f3; color: #555; border-radius: 20px; font-size: 14px; font-weight: 600; cursor: pointer; white-space: nowrap; }
+        .filter-btn.active { background: #8a2be2; color: #fff; }
+        
+        /* 카드 디자인 복구 */
+        .card { background: #fff; border-radius: 16px; padding: 20px; margin-bottom: 16px; border: 1px solid #eef0f3; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        
+        /* 일정 탭 전용 스타일 */
+        .card-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .date-badge { background: #f3e8ff; color: #8a2be2; font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 12px; }
+        .status-badge { font-size: 12px; font-weight: 700; padding: 5px 10px; border-radius: 12px; }
+        .status-soldout { background: #fee2e2; color: #ef4444; }
+        .status-progress { background: #f3e8ff; color: #8a2be2; }
+        .status-ready { background: #fef3c7; color: #d97706; }
+        .status-tba { background: #f1f5f9; color: #64748b; }
+        
+        .city-name { font-size: 18px; font-weight: 800; margin: 0 0 6px 0; color: #111; }
+        .city-name span { font-size: 14px; color: #000; font-weight: 900; margin-left: 4px; }
+        .stadium-name { font-size: 14px; color: #64748b; margin: 0; }
+        .btn-ticket { display: block; background: #8a2be2; color: #fff; text-decoration: none; padding: 12px; border-radius: 10px; margin-top: 16px; font-weight: 700; font-size: 14px; text-align: center; }
+        
+        /* 뉴스 탭 전용 스타일 */
+        .news-meta { font-size: 12px; color: #888; margin-bottom: 8px; }
+        .news-title { font-size: 16px; font-weight: 700; margin: 0 0 12px 0; line-height: 1.4; }
+        .news-title a { color: #111; text-decoration: none; }
+        .news-summary { background: #faf5ff; border-radius: 12px; padding: 16px; font-size: 14px; line-height: 1.6; color: #333; }
+        .news-summary-title { color: #8a2be2; font-weight: 800; font-size: 13px; margin-bottom: 8px; }
+        
+        /* 하단 5개 네비게이션 복구 */
+        .bottom-nav { position: fixed; bottom: 0; left: 50%; transform: translateX(-50%); width: 100%; max-width: 600px; background: #fff; display: flex; justify-content: space-around; padding: 12px 0; border-top: 1px solid #eee; box-shadow: 0 -4px 20px rgba(0,0,0,0.03); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #94a3b8; font-size: 11px; font-weight: 600; cursor: pointer; text-decoration: none; }
+        .nav-item.active { color: #8a2be2; }
+        .nav-icon { font-size: 20px; }
+        
+        /* 탭 전환 */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
-        .status-badge { float: right; font-size: 11px; padding: 4px 8px; border-radius: 12px; font-weight: bold; }
-        .status-soldout { background: #ffebee; color: #c62828; }
-        .status-progress { background: #f3e5f5; color: #6a1b9a; }
-        .status-ready { background: #fff3e0; color: #ef6c00; }
-        .status-tba { background: #f5f5f5; color: #757575; }
     </style>
 </head>
 <body>
-
-<div class="header">
-    <div class="logo">BTS <span>HUB</span></div>
-</div>
-
-<div class="content">
-    <!-- 뉴스 탭 -->
-    <div id="tab-news" class="tab-content active">
-        <h3 style="margin-top:0;">🔥 실시간 뉴스 피드</h3>
-        <div id="news-container"><p style="text-align:center; color:#888;">뉴스를 불러오는 중입니다...</p></div>
+<div class="app-container">
+    <div class="header">
+        <div class="logo">BTS <span>HUB</span></div>
     </div>
 
-    <!-- 일정 탭 -->
-    <div id="tab-schedule" class="tab-content">
-        <h3 style="margin-top:0;">📅 2026-2027 BTS 월드투어 일정</h3>
-        <div class="schedule-filters" id="schedule-filters">
-            <button class="active" onclick="filterSchedule('all')">전체보기</button>
-            <button onclick="filterSchedule('asia')">아시아</button>
-            <button onclick="filterSchedule('na')">북미</button>
-            <button onclick="filterSchedule('eu')">유럽</button>
-            <button onclick="filterSchedule('sa')">남미</button>
+    <div class="content">
+        <!-- 뉴스 탭 -->
+        <div id="tab-news" class="tab-content">
+            <h3 class="page-title">🔥 실시간 뉴스 피드</h3>
+            <p class="page-subtitle">AI가 요약해주는 가장 빠른 방탄소년단 소식</p>
+            <div id="news-container"><p style="text-align:center; color:#888; padding: 40px 0;">뉴스를 불러오는 중입니다...</p></div>
         </div>
-        <div id="schedule-container"><p style="text-align:center; color:#888;">일정을 불러오는 중입니다...</p></div>
-    </div>
-</div>
 
-<!-- 하단 네비게이션 -->
-<div class="bottom-nav">
-    <div class="nav-item active" onclick="switchMainTab('news')">📰<br>뉴스</div>
-    <div class="nav-item" onclick="switchMainTab('schedule')">📅<br>일정</div>
+        <!-- 일정 탭 (처음 화면에 표시됨) -->
+        <div id="tab-schedule" class="tab-content active">
+            <h3 class="page-title">📅 2026-2027 BTS 월드투어 일정</h3>
+            <p class="page-subtitle">전 세계 주요 도시의 월드투어 'ARIRANG' 전체 일정 및 티켓 정보</p>
+            
+            <div class="filters" id="schedule-filters">
+                <button class="filter-btn active" onclick="filterSchedule('all')">전체보기</button>
+                <button class="filter-btn" onclick="filterSchedule('asia')">아시아</button>
+                <button class="filter-btn" onclick="filterSchedule('na')">북미</button>
+                <button class="filter-btn" onclick="filterSchedule('eu')">유럽</button>
+                <button class="filter-btn" onclick="filterSchedule('sa')">남미</button>
+            </div>
+            
+            <div id="schedule-container"><p style="text-align:center; color:#888; padding: 40px 0;">일정을 불러오는 중입니다...</p></div>
+        </div>
+    </div>
+
+    <!-- 예전 5개 메뉴 하단 네비게이션 복구 -->
+    <div class="bottom-nav">
+        <div class="nav-item" onclick="switchMainTab('news')">
+            <span class="nav-icon">📰</span>
+            <span>뉴스</span>
+        </div>
+        <div class="nav-item active" onclick="switchMainTab('schedule')">
+            <span class="nav-icon">📅</span>
+            <span>일정</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">💬</span>
+            <span>커뮤니티</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">🖼️</span>
+            <span>갤러리</span>
+        </div>
+        <div class="nav-item">
+            <span class="nav-icon">💰</span>
+            <span>수익화</span>
+        </div>
+    </div>
 </div>
 
 <script>
@@ -67,6 +120,7 @@
     function switchMainTab(tabId) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.bottom-nav .nav-item').forEach(el => el.classList.remove('active'));
+        
         document.getElementById('tab-' + tabId).classList.add('active');
         event.currentTarget.classList.add('active');
     }
@@ -83,8 +137,8 @@
                 const card = document.createElement('div');
                 card.className = 'card';
                 card.innerHTML = `
-                    <div style="font-size:12px; color:#888; margin-bottom:5px;">${news.source} · ${news.time}</div>
-                    <h4 style="margin:0 0 10px 0;"><a href="${news.link}" target="_blank" style="color:#000; text-decoration:none;">${news.title}</a></h4>
+                    <div class="news-meta">${news.source} · ${news.time}</div>
+                    <h4 class="news-title"><a href="${news.link}" target="_blank">${news.title}</a></h4>
                     <div class="news-summary">
                         <div class="news-summary-title">⚡ BTS PICK 핵심 요약</div>
                         ${news.summary.replace(/\\n/g, '<br>')}
@@ -93,7 +147,7 @@
                 container.appendChild(card);
             });
         } catch (e) {
-            document.getElementById('news-container').innerHTML = '<p style="text-align:center; color:#888;">로봇이 아직 뉴스를 수집하고 있습니다. 잠시 후 새로고침 해주세요.</p>';
+            document.getElementById('news-container').innerHTML = '<p style="text-align:center; color:#888; padding: 40px 0;">로봇이 아직 뉴스를 수집하고 있습니다.</p>';
         }
     }
 
@@ -105,12 +159,12 @@
             scheduleData = await response.json();
             renderSchedule('all');
         } catch (e) {
-            document.getElementById('schedule-container').innerHTML = '<p style="text-align:center; color:#888;">일정 데이터를 불러오지 못했습니다.</p>';
+            document.getElementById('schedule-container').innerHTML = '<p style="text-align:center; color:#888; padding: 40px 0;">일정 데이터를 불러오지 못했습니다.</p>';
         }
     }
 
     function filterSchedule(region) {
-        document.querySelectorAll('#schedule-filters button').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
         event.target.classList.add('active');
         renderSchedule(region);
     }
@@ -127,18 +181,27 @@
             else if (s.status.includes('예매 오픈')) statusClass = 'status-ready';
 
             let ticketBtn = '';
-            // StubHub 링크가 존재하면 구매 버튼 생성!
             if (s.ticketUrl && s.ticketUrl !== '') {
                 ticketBtn = `<a href="${s.ticketUrl}" target="_blank" class="btn-ticket">🎫 스텁허브(StubHub) 예매하기</a>`;
+            }
+
+            // KR, US 등 나라 코드를 작고 진하게 렌더링
+            let cityParts = s.city.split(' ');
+            let displayCity = s.city;
+            if(cityParts.length > 1) {
+                let countryCode = cityParts.pop(); 
+                displayCity = cityParts.join(' ') + ` <span>${countryCode}</span>`;
             }
 
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <div class="status-badge ${statusClass}">${s.status}</div>
-                <div style="color:#8a2be2; font-size:12px; font-weight:bold; margin-bottom:5px;">${s.date}</div>
-                <h4 style="margin:0 0 5px 0;">${s.city}</h4>
-                <p style="margin:0; font-size:13px; color:#555;">${s.stadium}</p>
+                <div class="card-top">
+                    <div class="date-badge">${s.date}</div>
+                    <div class="status-badge ${statusClass}">${s.status}</div>
+                </div>
+                <h4 class="city-name">${displayCity}</h4>
+                <p class="stadium-name">${s.stadium}</p>
                 ${ticketBtn}
             `;
             container.appendChild(card);
