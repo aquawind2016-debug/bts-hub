@@ -55,7 +55,7 @@ def get_and_summarize_news():
             summary = interaction.output_text.strip()
         except Exception as e:
             print(f"요약 실패: {e}")
-            summary = "① 구글의 최신 2026년 AI 보안 정책(Interactions API)이 적용되었습니다.\n② AI Studio에서 새 '승인(Auth) 키'를 발급받아 깃허브에 다시 넣어주세요.\n③ 기존 구형(표준) 키는 구글에서 완전히 차단했습니다."
+            summary = "① API 열쇠(Key) 설정 오류입니다.\n② 깃허브 Settings > Secrets에서 GEMINI_API_KEY가 정확한지 확인해주세요.\n③ 키 복사 시 띄어쓰기가 섞였을 수 있습니다."
         
         news_list.append({
             "title": title,
@@ -74,14 +74,19 @@ def get_and_summarize_news():
 def update_stubhub_schedule():
     print("🎫 StubHub 및 공식 일정 데이터를 업데이트합니다...")
     
-    # 향후 이 부분에 BeautifulSoup 등을 이용한 스텁허브 크롤링 코드가 들어갈 수 있습니다.
-    # 지금은 웹사이트가 이 파일을 읽어가는 '동적 연동(Dynamic Fetch)' 아키텍처를 완성합니다.
     dynamic_schedules = [
         { "date": "2026.04.09 - 04.12", "city": "고양, 대한민국 🇰🇷", "stadium": "고양종합운동장 주경기장", "status": "매진 완료", "region": "asia", "ticketUrl": "" },
+        { "date": "2026.04.17 - 04.18", "city": "도쿄, 일본 🇯🇵", "stadium": "도쿄 돔 (Tokyo Dome)", "status": "매진 완료", "region": "asia", "ticketUrl": "" },
+        { "date": "2026.08.10 - 08.11", "city": "볼티모어, 미국 🇺🇸", "stadium": "M&T Bank Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/kr/bts-tickets/performer/1503185" },
         { "date": "2026.08.15 - 08.16", "city": "알링턴, 미국 🇺🇸", "stadium": "AT&T Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-arlington-tickets-8-16-2026/event/160262071/" },
+        { "date": "2026.08.22 - 08.23", "city": "토론토, 캐나다 🇨🇦", "stadium": "Rogers Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/kr/bts-tickets/performer/1503185" },
         { "date": "2026.08.27 - 08.28", "city": "시카고, 미국 🇺🇸", "stadium": "Soldier Field", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-chicago-tickets-8-27-2026/event/160262060/" },
         { "date": "2026.09.01 - 09.06", "city": "잉글우드, 미국 🇺🇸", "stadium": "SoFi Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-inglewood-tickets-9-6-2026/event/160262063/" },
-        { "date": "2026.11.05 - 11.06", "city": "런던, 영국 🇬🇧", "stadium": "Wembley Stadium", "status": "추후 공지", "region": "eu", "ticketUrl": "" }
+        { "date": "2026.10.15 - 10.16", "city": "상파울루, 브라질 🇧🇷", "stadium": "Allianz Parque", "status": "예매 오픈 예정", "region": "sa", "ticketUrl": "" },
+        { "date": "2026.11.05 - 11.06", "city": "런던, 영국 🇬🇧", "stadium": "Wembley Stadium", "status": "추후 공지", "region": "eu", "ticketUrl": "" },
+        { "date": "2026.11.12 - 11.13", "city": "파리, 프랑스 🇫🇷", "stadium": "Stade de France", "status": "추후 공지", "region": "eu", "ticketUrl": "" },
+        { "date": "2026.11.20 - 11.21", "city": "뮌헨, 독일 🇩🇪", "stadium": "Olympiastadion", "status": "추후 공지", "region": "eu", "ticketUrl": "" },
+        { "date": "2026.12.15 - 12.16", "city": "서울, 대한민국 🇰🇷", "stadium": "잠실올림픽주경기장 (투어 피날레)", "status": "추후 공지", "region": "asia", "ticketUrl": "" }
     ]
     
     with open('schedule_data.json', 'w', encoding='utf-8') as f:
