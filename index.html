@@ -319,7 +319,7 @@
             { date: '2026.04.25 - 04.26', city: '탬파, 미국 🇺🇸', stadium: 'Raymond James Stadium', status: '예매 진행중', region: 'na' },
             { date: '2026.05.02 - 05.03', city: '잉글우드, 미국 🇺🇸', stadium: 'SoFi Stadium', status: '예매 진행중', region: 'na' },
             { date: '2026.05.07 - 05.10', city: '멕시코시티, 멕시코 🇲🇽', stadium: 'Estadio GNP Seguros', status: '예매 오픈 예정', region: 'na' },
-            { date: '2026.05.15 - 05.16', 시티: '상파울루, 브라질 🇧🇷', stadium: 'Allianz Parque', status: '예매 오픈 예정', region: 'sa' },
+            { date: '2026.05.15 - 05.16', city: '상파울루, 브라질 🇧🇷', stadium: 'Allianz Parque', status: '예매 오픈 예정', region: 'sa' },
             { date: '2026.05.23 - 05.24', city: '뉴저지, 미국 🇺🇸', stadium: 'MetLife Stadium', status: '예매 오픈 예정', region: 'na' },
             { date: '2026.06.05 - 06.06', city: '런던, 영국 🇬🇧', stadium: 'Wembley Stadium', status: '추후 공지', region: 'eu' },
             { date: '2026.06.12 - 06.13', city: '파리, 프랑스 🇫🇷', stadium: 'Stade de France', status: '추후 공지', region: 'eu' },
@@ -460,8 +460,7 @@
                 if(item.status === '매진 완료') statusClass = 'bg-red-100 text-red-600';
                 else if(item.status === '추후 공지') statusClass = 'bg-slate-100 text-slate-500';
 
-                // city 혹은 시티 오타 방어
-                const cityName = item.city || item.시티 || '도시 미정';
+                const cityName = item.city || '도시 미정';
 
                 const card = document.createElement('div');
                 card.className = "bg-white p-3.5 rounded-xl border border-slate-200 flex items-center justify-between shadow-sm hover:border-bts-300 transition";
