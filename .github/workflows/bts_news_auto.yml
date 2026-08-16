@@ -21,7 +21,7 @@ jobs:
         python-version: '3.10'
 
     - name: 3. 파이썬 로봇 준비물 설치
-      run: pip install requests google-genai
+      run: pip install requests google-genai cloudscraper beautifulsoup4
 
     - name: 4. 뉴스 및 스텁허브 일정 수집 실행! (에러 방어 모드)
       env:
