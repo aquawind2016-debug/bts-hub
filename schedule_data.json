@@ -1,7 +1,7 @@
 [
     {
         "date": "2026.08.16",
-        "city": "알링턴, 미국 🇺🇸",
+        "city": "알링턴, 미국",
         "stadium": "AT&T Stadium",
         "status": "예매 진행중",
         "region": "na",
@@ -9,23 +9,23 @@
     },
     {
         "date": "2026.08.22",
-        "city": "토론토, 캐나다 🇨🇦",
+        "city": "토론토, 캐나다",
         "stadium": "Rogers Stadium",
         "status": "예매 진행중",
         "region": "na",
-        "ticketUrl": "https://www.stubhub.com/bts-toronto-tickets-8-22-2026/event/1111111/"
+        "ticketUrl": "https://www.stubhub.ca/bts-tickets/performer/1503185/"
     },
     {
         "date": "2026.08.23",
-        "city": "토론토, 캐나다 🇨🇦",
+        "city": "토론토, 캐나다",
         "stadium": "Rogers Stadium",
         "status": "예매 진행중",
         "region": "na",
-        "ticketUrl": "https://www.stubhub.com/bts-toronto-tickets-8-23-2026/event/2222222/"
+        "ticketUrl": "https://www.stubhub.ca/bts-tickets/performer/1503185/"
     },
     {
         "date": "2026.08.27",
-        "city": "시카고, 미국 🇺🇸",
+        "city": "시카고, 미국",
         "stadium": "Soldier Field",
         "status": "예매 진행중",
         "region": "na",
@@ -33,7 +33,7 @@
     },
     {
         "date": "2026.08.28",
-        "city": "시카고, 미국 🇺🇸",
+        "city": "시카고, 미국",
         "stadium": "Soldier Field",
         "status": "예매 진행중",
         "region": "na",
@@ -41,7 +41,7 @@
     },
     {
         "date": "2026.09.05",
-        "city": "잉글우드, 미국 🇺🇸",
+        "city": "잉글우드, 미국",
         "stadium": "SoFi Stadium",
         "status": "예매 진행중",
         "region": "na",
@@ -49,15 +49,31 @@
     },
     {
         "date": "2026.09.06",
-        "city": "잉글우드, 미국 🇺🇸",
+        "city": "잉글우드, 미국",
         "stadium": "SoFi Stadium",
         "status": "예매 진행중",
         "region": "na",
         "ticketUrl": "https://www.stubhub.com/bts-inglewood-tickets-9-6-2026/event/160262063/"
     },
     {
+        "date": "2026.09.18",
+        "city": "라스베이거스, 미국",
+        "stadium": "T-Mobile Arena",
+        "status": "예매 진행중",
+        "region": "na",
+        "ticketUrl": "https://www.stubhub.com/bts-las-vegas-tickets-9-18-2026/event/111111/"
+    },
+    {
+        "date": "2026.10.10",
+        "city": "리마, 페루",
+        "stadium": "Estadio Nacional",
+        "status": "예매 진행중",
+        "region": "sa",
+        "ticketUrl": "https://www.stubhub.ca/bts-lima-tickets-10-10-2026/event/160777095/"
+    },
+    {
         "date": "2026.10.15",
-        "city": "상파울루, 브라질 🇧🇷",
+        "city": "상파울루, 브라질",
         "stadium": "Allianz Parque",
         "status": "예매 오픈 예정",
         "region": "sa",
@@ -65,74 +81,26 @@
     },
     {
         "date": "2026.10.16",
-        "city": "상파울루, 브라질 🇧🇷",
+        "city": "상파울루, 브라질",
         "stadium": "Allianz Parque",
         "status": "예매 오픈 예정",
         "region": "sa",
         "ticketUrl": ""
     },
     {
-        "date": "2026.11.05",
-        "city": "런던, 영국 🇬🇧",
-        "stadium": "Wembley Stadium",
-        "status": "추후 공지",
-        "region": "eu",
-        "ticketUrl": ""
-    },
-    {
-        "date": "2026.11.06",
-        "city": "런던, 영국 🇬🇧",
-        "stadium": "Wembley Stadium",
-        "status": "추후 공지",
-        "region": "eu",
-        "ticketUrl": ""
-    },
-    {
-        "date": "2026.11.12",
-        "city": "파리, 프랑스 🇫🇷",
-        "stadium": "Stade de France",
-        "status": "추후 공지",
-        "region": "eu",
-        "ticketUrl": ""
-    },
-    {
-        "date": "2026.11.13",
-        "city": "파리, 프랑스 🇫🇷",
-        "stadium": "Stade de France",
-        "status": "추후 공지",
-        "region": "eu",
-        "ticketUrl": ""
-    },
-    {
-        "date": "2026.11.20",
-        "city": "뮌헨, 독일 🇩🇪",
-        "stadium": "Olympiastadion",
-        "status": "추후 공지",
-        "region": "eu",
-        "ticketUrl": ""
-    },
-    {
-        "date": "2026.11.21",
-        "city": "뮌헨, 독일 🇩🇪",
-        "stadium": "Olympiastadion",
-        "status": "추후 공지",
-        "region": "eu",
-        "ticketUrl": ""
-    },
-    {
-        "date": "2026.12.15",
-        "city": "서울, 대한민국 🇰🇷",
-        "stadium": "잠실올림픽주경기장 (투어 피날레)",
-        "status": "추후 공지",
+        "date": "2026.12.26",
+        "city": "자카르타, 인도네시아",
+        "stadium": "Gelora Bung Karno Stadium",
+        "status": "예매 진행중",
         "region": "asia",
-        "ticketUrl": ""
+        "ticketUrl": "https://www.stubhub.com/kr/bts-jakarta-tickets-12-26-2026/event/161204266/"
     },
     {
-        "date": "2026.12.16",
-        "city": "서울, 대한민국 🇰🇷",
-        "stadium": "잠실올림픽주경기장 (투어 피날레)",
-        "status": "추후 공지",
+        "date": "2026.12.29",
+        "city": "자카르타, 인도네시아",
+        "stadium": "Gelora Bung Karno Stadium",
+        "status": "예매 진행중",
         "region": "asia",
-        "ticketUrl": ""
+        "ticketUrl": "https://www.stubhub.com/bts-jakarta-tickets-12-29-2026/event/161396339/"
     }
 ]
