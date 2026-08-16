@@ -4,6 +4,8 @@ import requests
 import xml.etree.ElementTree as ET
 from google import genai
 from datetime import datetime
+import cloudscraper
+from bs4 import BeautifulSoup
 
 GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY", "").strip()
 
@@ -68,45 +70,86 @@ def get_and_summarize_news():
         print(f"❌ 뉴스 수집 중 오류: {e}")
 
 def update_stubhub_schedule():
-    print("🎫 StubHub 전체 페이지 일정 데이터 업데이트 중...")
+    print("🎫 진짜 StubHub 실시간 크롤링 시작 (꼼수/하드코딩 완전 제거)...")
     try:
-        # [완벽 검증 2] StubHub Page 1~9 전체 크롤링 데이터 1:1 개별 매칭 (날짜 묶음 절대 금지)
-        raw_schedules = [
-            { "date": "2026.08.15", "city": "알링턴, 미국", "stadium": "AT&T Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-arlington-tickets-8-15-2026/event/160262070/" },
-            { "date": "2026.08.16", "city": "알링턴, 미국", "stadium": "AT&T Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-arlington-tickets-8-16-2026/event/160262071/" },
-            
-            { "date": "2026.08.22", "city": "토론토, 캐나다", "stadium": "Rogers Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.ca/bts-tickets/performer/1503185/" },
-            { "date": "2026.08.23", "city": "토론토, 캐나다", "stadium": "Rogers Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.ca/bts-tickets/performer/1503185/" },
-            
-            { "date": "2026.08.27", "city": "시카고, 미국", "stadium": "Soldier Field", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-chicago-tickets-8-27-2026/event/160262060/" },
-            { "date": "2026.08.28", "city": "시카고, 미국", "stadium": "Soldier Field", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-chicago-tickets-8-28-2026/event/160262061/" },
-            
-            { "date": "2026.09.05", "city": "잉글우드, 미국", "stadium": "SoFi Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-inglewood-tickets-9-5-2026/event/160262062/" },
-            { "date": "2026.09.06", "city": "잉글우드, 미국", "stadium": "SoFi Stadium", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-inglewood-tickets-9-6-2026/event/160262063/" },
-            
-            { "date": "2026.09.18", "city": "라스베이거스, 미국", "stadium": "T-Mobile Arena", "status": "예매 진행중", "region": "na", "ticketUrl": "https://www.stubhub.com/bts-las-vegas-tickets-9-18-2026/event/111111/" },
-            
-            { "date": "2026.10.10", "city": "리마, 페루", "stadium": "Estadio Nacional", "status": "예매 진행중", "region": "sa", "ticketUrl": "https://www.stubhub.ca/bts-lima-tickets-10-10-2026/event/160777095/" },
-            
-            { "date": "2026.10.15", "city": "상파울루, 브라질", "stadium": "Allianz Parque", "status": "예매 오픈 예정", "region": "sa", "ticketUrl": "" },
-            { "date": "2026.10.16", "city": "상파울루, 브라질", "stadium": "Allianz Parque", "status": "예매 오픈 예정", "region": "sa", "ticketUrl": "" },
-            
-            { "date": "2026.12.26", "city": "자카르타, 인도네시아", "stadium": "Gelora Bung Karno Stadium", "status": "예매 진행중", "region": "asia", "ticketUrl": "https://www.stubhub.com/kr/bts-jakarta-tickets-12-26-2026/event/161204266/" },
-            { "date": "2026.12.29", "city": "자카르타, 인도네시아", "stadium": "Gelora Bung Karno Stadium", "status": "예매 진행중", "region": "asia", "ticketUrl": "https://www.stubhub.com/bts-jakarta-tickets-12-29-2026/event/161396339/" }
-        ]
-
-        # [완벽 검증 3] 지난 일정은 절대 보여주지 않도록 자동 필터링!
+        # 1. 봇 차단을 우회하기 위한 Cloudscraper 장착
+        scraper = cloudscraper.create_scraper()
+        
+        dynamic_schedules = []
         today_str = datetime.now().strftime("%Y.%m.%d")
         
-        # 오늘 날짜보다 크거나 같은(미래의) 일정만 남깁니다.
-        dynamic_schedules = [s for s in raw_schedules if s["date"] >= today_str]
+        # 2. Page 1부터 Page 9까지 샅샅이 순차 검색
+        for page in range(1, 10):
+            url = f"https://www.stubhub.com/bts-tickets/performer/1503185?restPage={page}"
+            print(f"🔍 StubHub Page {page} 스캔 중...")
+            
+            response = scraper.get(url, timeout=15)
+            
+            # 스텁허브가 접근을 막으면 즉시 중단
+            if response.status_code != 200:
+                print(f"⚠️ Page {page} 접근 차단됨 (Status: {response.status_code})")
+                break 
+                
+            # 3. BeautifulSoup으로 실제 웹페이지 해부
+            soup = BeautifulSoup(response.text, 'html.parser')
+            
+            # 스텁허브 내부에 숨겨진 일정 데이터(JSON-LD) 파싱 시도
+            scripts = soup.find_all('script', type='application/ld+json')
+            page_has_events = False
+            
+            for script in scripts:
+                try:
+                    data = json.loads(script.string)
+                    items = data if isinstance(data, list) else [data]
+                    
+                    for item in items:
+                        if item.get('@type') in ['Event', 'MusicEvent']:
+                            page_has_events = True
+                            start_date_raw = item.get('startDate', '')
+                            event_url = item.get('url', '')
+                            location = item.get('location', {})
+                            stadium = location.get('name', '공연장 미정')
+                            address = location.get('address', {})
+                            city = address.get('addressLocality', '도시 미정')
+                            country = address.get('addressCountry', '')
+                            
+                            # 날짜 변환 및 지난 일정 필터링
+                            if start_date_raw:
+                                dt = datetime.fromisoformat(start_date_raw.replace('Z', '+00:00').split('T')[0])
+                                date_str = dt.strftime("%Y.%m.%d")
+                                
+                                # [요청사항] 오늘 날짜보다 지난 일정은 절대 저장하지 않음!
+                                if date_str >= today_str:
+                                    dynamic_schedules.append({
+                                        "date": date_str,
+                                        "city": f"{city}, {country}",
+                                        "stadium": stadium,
+                                        "status": "예매 진행중",
+                                        "region": "na", # 자동 파싱 기본값
+                                        "ticketUrl": event_url
+                                    })
+                except Exception:
+                    continue
+                    
+            # 4. 더 이상 이벤트 데이터가 없는 페이지면 시간 낭비 없이 스캔 종료
+            if not page_has_events:
+                print(f"ℹ️ Page {page}에 더 이상 일정이 없어 스캔을 마칩니다.")
+                break
+                
+        # 5. 중복 티켓 URL 제거 및 날짜순 정렬
+        unique_schedules = {v['ticketUrl']: v for v in dynamic_schedules}.values()
+        final_schedules = sorted(list(unique_schedules), key=lambda x: x['date'])
+
+        # 6. 진정한 개발자의 룰: 가짜 데이터를 넣지 않는다. 데이터가 없으면 빈 화면을 띄운다.
+        if not final_schedules:
+            print("⚠️ 수집된 일정이 없습니다. (스텁허브에 일정이 없거나 방화벽에 차단됨)")
         
         with open('schedule_data.json', 'w', encoding='utf-8') as f:
-            json.dump(dynamic_schedules, f, ensure_ascii=False, indent=4)
-        print(f"✅ 일정 {len(dynamic_schedules)}개 필터링 및 저장 완료!")
+            json.dump(final_schedules, f, ensure_ascii=False, indent=4)
+        print(f"✅ 실제 스텁허브 일정 {len(final_schedules)}개 크롤링 및 저장 완료!")
         
     except Exception as e:
-        print(f"❌ 일정 저장 중 오류: {e}")
+        print(f"❌ 일정 크롤링 중 치명적 오류 발생: {e}")
 
 if __name__ == "__main__":
     get_and_summarize_news()
